@@ -4,6 +4,7 @@
   "package": "com.glisco.victus.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "BrewingRecipeRegistryInvoker",
     "PlayerEntityMixin",
     "PotionItemMixin"
   ],

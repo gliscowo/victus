@@ -1,4 +1,7 @@
 {
+  "item.victus.blank_heart_aspect": "Blank Heart Aspect",
+  "item.victus.broken_heart": "Broken Heart",
+
   "item.victus.bundle_heart_aspect": "Heart Aspect: §7Bundled",
   "item.victus.bundle_heart_aspect.description": "Three hearts, conveniently strapped onto one",
   "item.victus.creeper_heart_aspect": "Heart Aspect: §7Creeper",
@@ -15,7 +18,6 @@
   "item.victus.totem_heart_aspect.description": "Works like a Totem of Undying, contains more protein",
   "item.victus.potion_heart_aspect": "Heart Aspect: §7Potion",
   "item.victus.potion_heart_aspect.description": "A heart-shaped automated bottle",
-  "item.victus.broken_heart": "Broken Heart",
 
   "text.victus.recharge_duration": "§7Recharge Duration: %1$.1fs",
   "itemGroup.victus.victus": "Victus",
