@@ -1,0 +1,24 @@
+{
+  "item.victus.bundle_heart_aspect": "Heart Aspect: §7Bundled",
+  "item.victus.bundle_heart_aspect.description": "Three hearts, conveniently strapped onto one",
+  "item.victus.creeper_heart_aspect": "Heart Aspect: §7Creeper",
+  "item.victus.creeper_heart_aspect.description": "Explodes like a Creeper. Does self-damage",
+  "item.victus.diamond_heart_aspect": "Heart Aspect: §7Diamond",
+  "item.victus.diamond_heart_aspect.description": "Provides 5 points of armor while active",
+  "item.victus.grilled_heart_aspect": "Heart Aspect: §7Grilled",
+  "item.victus.grilled_heart_aspect.description": "It's a steak. You eat it",
+  "item.victus.light_heart_aspect": "Heart Aspect: §7Light",
+  "item.victus.light_heart_aspect.description": "Falls slowly, recharges quickly",
+  "item.victus.ocean_heart_aspect": "Heart Aspect: §7Ocean",
+  "item.victus.ocean_heart_aspect.description": "It's a steak. You eat it",
+  "item.victus.totem_heart_aspect": "Heart Aspect: §7Totem",
+  "item.victus.totem_heart_aspect.description": "Works like a Totem of Undying, contains more protein",
+  "item.victus.potion_heart_aspect": "Heart Aspect: §7Potion",
+  "item.victus.potion_heart_aspect.description": "A heart-shaped automated bottle",
+  "item.victus.broken_heart": "Broken Heart",
+
+  "text.victus.recharge_duration": "§7Recharge Duration: %1$.1fs",
+  "itemGroup.victus.victus": "Victus",
+
+  "death.attack.suicide": "%1$s aw man"
+}
