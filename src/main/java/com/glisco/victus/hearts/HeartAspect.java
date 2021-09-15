@@ -52,8 +52,15 @@ public class HeartAspect implements ItemConvertible {
     }
 
     public void tick() {
-        if (this.cooldown == -1) return;
-        this.cooldown--;
+        if (this.cooldown == -1) update();
+        else this.cooldown--;
+    }
+
+    /**
+     * Can be implemented for behaviour ran every tick this heart is active
+     */
+    protected void update() {
+
     }
 
     /**
