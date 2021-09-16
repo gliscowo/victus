@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    "sas",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:gunpowder"
+    },
+    "a": {
+      "item": "victus:blank_heart_aspect"
+    }
+  },
+  "result": {
+    "item": "victus:creeper_heart_aspect"
+  }
+}

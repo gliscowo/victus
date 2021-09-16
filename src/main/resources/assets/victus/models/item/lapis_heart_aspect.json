@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "victus:item/lapis_heart_aspect"
+  }
+}

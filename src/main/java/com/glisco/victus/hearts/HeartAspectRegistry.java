@@ -20,6 +20,16 @@ public class HeartAspectRegistry {
         register(OceanAspect.TYPE);
         register(TotemAspect.TYPE);
         register(PotionAspect.TYPE);
+        register(ArcheryAspect.TYPE);
+        register(BlazingAspect.TYPE);
+        register(DraconicAspect.TYPE);
+        register(EmeraldAspect.TYPE);
+        register(EvokingAspect.TYPE);
+        register(GoldenAspect.TYPE);
+        register(IcyAspect.TYPE);
+        register(IronAspect.TYPE);
+        register(LapisAspect.TYPE);
+        register(SweetAspect.TYPE);
     }
 
     public static void register(HeartAspect.Type type) {

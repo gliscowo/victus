@@ -11,10 +11,13 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class HeartAspect implements ItemConvertible {
 
     public static final Identifier HEART_ATLAS_TEXTURE = Victus.id("textures/gui/hearts.png");
+    protected static final Predicate<PlayerEntity> NEVER_UPDATE = p -> false;
+    protected static final Predicate<PlayerEntity> ALWAYS_UPDATE = p -> true;
 
     protected final PlayerEntity player;
 
@@ -52,8 +55,8 @@ public class HeartAspect implements ItemConvertible {
     }
 
     public void tick() {
-        if (this.cooldown == -1) update();
-        else this.cooldown--;
+        if (this.cooldown > -1) this.cooldown--;
+        else if (this.type.updateCondition.test(player)) update();
     }
 
     /**
@@ -61,6 +64,21 @@ public class HeartAspect implements ItemConvertible {
      */
     protected void update() {
 
+    }
+
+    /**
+     * Creates an update condition that applies to players below the given absolute health
+     */
+    protected static Predicate<PlayerEntity> belowHealth(float health) {
+        return p -> p.getHealth() <= health;
+    }
+
+    /**
+     * Creates an update condition that applies to players below the given percentage
+     * of their max health
+     */
+    protected static Predicate<PlayerEntity> belowHealthPercentage(float percentage) {
+        return p -> p.getHealth() <= p.getMaxHealth() * percentage;
     }
 
     /**
@@ -144,5 +162,33 @@ public class HeartAspect implements ItemConvertible {
         return HeartAspectItem.getItem(type);
     }
 
-    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, Function<PlayerEntity, HeartAspect> factory) {}
+
+    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, Predicate<PlayerEntity> updateCondition, Function<PlayerEntity, HeartAspect> factory) {
+
+        /**
+         * @param id The registry ID of this type
+         * @param textureIndex The index into the atlas texture where this aspect's texture is located
+         * @param standardRechargeDuration The default recharge duration of this aspect type, can be overridden dynamically
+         * @param updateCondition The conditions under which to call the {@link HeartAspect#update()} function,
+         * @param factory The aspect factory
+         *
+         * @see HeartAspect#belowHealth(float)
+         * @see HeartAspect#belowHealthPercentage(float)
+         */
+        public Type(Identifier id, int textureIndex, int standardRechargeDuration, Predicate<PlayerEntity> updateCondition, Function<PlayerEntity, HeartAspect> factory) {
+            this.id = id;
+            this.textureIndex = textureIndex;
+            this.standardRechargeDuration = standardRechargeDuration;
+            this.updateCondition = updateCondition;
+            this.factory = factory;
+        }
+
+        /**
+         * Convenience constructor that does not take an update condition and uses {@link HeartAspect#NEVER_UPDATE} as the default
+         */
+        public Type(Identifier id, int textureIndex, int standardRechargeDuration, Function<PlayerEntity, HeartAspect> factory) {
+            this(id, textureIndex, standardRechargeDuration, NEVER_UPDATE, factory);
+        }
+
+    }
 }
