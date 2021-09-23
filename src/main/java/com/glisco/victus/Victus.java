@@ -1,6 +1,6 @@
 package com.glisco.victus;
 
-import com.glisco.owo.registration.AutoRegistryContainer;
+import com.glisco.owo.registration.reflect.FieldRegistrationHandler;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
 import com.glisco.victus.item.VictusItems;
@@ -34,9 +34,9 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
     @Override
     public void onInitialize() {
         HeartAspectRegistry.registerDefaults();
-        AutoRegistryContainer.register(VictusItems.class, MOD_ID);
-        AutoRegistryContainer.register(VictusStatusEffects.class, MOD_ID);
-        AutoRegistryContainer.register(VictusPotions.class, MOD_ID);
+        FieldRegistrationHandler.register(VictusItems.class, MOD_ID, false);
+        FieldRegistrationHandler.register(VictusStatusEffects.class, MOD_ID, false);
+        FieldRegistrationHandler.register(VictusPotions.class, MOD_ID, false);
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) ->
                 dispatcher.register(CommandManager.literal("damage").then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {

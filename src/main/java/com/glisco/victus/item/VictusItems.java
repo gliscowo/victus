@@ -1,6 +1,6 @@
 package com.glisco.victus.item;
 
-import com.glisco.owo.registration.AutoRegistryContainer;
+import com.glisco.owo.registration.reflect.AutoRegistryContainer;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.content.*;
 import net.minecraft.item.Item;
@@ -37,7 +37,7 @@ public class VictusItems implements AutoRegistryContainer<Item> {
     }
 
     @Override
-    public Class<Item> getRegisteredType() {
+    public Class<Item> getTargetFieldType() {
         return Item.class;
     }
 }

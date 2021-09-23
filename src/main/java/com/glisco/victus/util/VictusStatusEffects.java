@@ -1,6 +1,6 @@
 package com.glisco.victus.util;
 
-import com.glisco.owo.registration.AutoRegistryContainer;
+import com.glisco.owo.registration.reflect.AutoRegistryContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.util.registry.Registry;
 
@@ -14,7 +14,7 @@ public class VictusStatusEffects implements AutoRegistryContainer<StatusEffect> 
     }
 
     @Override
-    public Class<StatusEffect> getRegisteredType() {
+    public Class<StatusEffect> getTargetFieldType() {
         return StatusEffect.class;
     }
 }
