@@ -1,12 +1,11 @@
 package com.glisco.victus.item;
 
-import com.glisco.owo.registration.reflect.AutoRegistryContainer;
+import com.glisco.owo.registration.reflect.ItemRegistryContainer;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.content.*;
 import net.minecraft.item.Item;
-import net.minecraft.util.registry.Registry;
 
-public class VictusItems implements AutoRegistryContainer<Item> {
+public class VictusItems implements ItemRegistryContainer {
 
     public static final Item BLANK_HEART_ASPECT = new Item(new Item.Settings().group(Victus.VICTUS_GROUP));
 
@@ -30,14 +29,4 @@ public class VictusItems implements AutoRegistryContainer<Item> {
     public static final Item SWEET_HEART_ASPECT = new HeartAspectItem(SweetAspect.TYPE);
 
     public static final Item BROKEN_HEART = new BrokenHeartItem();
-
-    @Override
-    public Registry<Item> getRegistry() {
-        return Registry.ITEM;
-    }
-
-    @Override
-    public Class<Item> getTargetFieldType() {
-        return Item.class;
-    }
 }

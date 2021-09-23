@@ -99,6 +99,15 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
         return index < 0 || index > effectiveSize() - 1 ? null : aspects.get(index);
     }
 
+    public boolean hasActiveAspect(HeartAspect.Type type) {
+        for (var aspect : this.aspects) {
+            if (aspect.getType() != type) continue;
+            if (!aspect.active()) continue;
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @return The current maximum size of this component
      */
