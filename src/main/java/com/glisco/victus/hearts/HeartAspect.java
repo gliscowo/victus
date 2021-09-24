@@ -4,6 +4,7 @@ import com.glisco.victus.Victus;
 import com.glisco.victus.item.HeartAspectItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
@@ -96,9 +97,12 @@ public class HeartAspect implements ItemConvertible {
      * Call this to signal that this aspect has received damage
      * Will delegate to implementation for effects and put this
      * aspect on cooldown
+     * @param source
+     * @param damage
+     * @param originalHealth
      */
-    public final void onBroken() {
-        if (this.active()) this.handleBreak();
+    public final void onBroken(DamageSource source, float damage, float originalHealth) {
+        if (this.active()) this.handleBreak(source, damage, originalHealth);
 
         this.cooldown = this.getRechargeDuration();
     }
@@ -137,8 +141,11 @@ public class HeartAspect implements ItemConvertible {
 
     /**
      * Called when this aspect has been broken
+     * @param source
+     * @param damage
+     * @param originalHealth
      */
-    protected void handleBreak() {
+    protected void handleBreak(DamageSource source, float damage, float originalHealth) {
 
     }
 

@@ -25,7 +25,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         float health = originalHealth - amount;
         int affectedAspect = Math.max(0, (int) Math.ceil((health + 1) / 2d) - 1);
 
-        Victus.ASPECTS.get(this).damageAspect(affectedAspect);
+        Victus.ASPECTS.get(this).damageAspect(affectedAspect, source, amount, originalHealth);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))

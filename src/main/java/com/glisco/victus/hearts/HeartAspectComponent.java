@@ -4,6 +4,7 @@ import com.glisco.victus.Victus;
 import com.glisco.victus.network.VictusPackets;
 import dev.onyxstudios.cca.api.v3.component.Component;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -81,16 +82,19 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
      * prior to the given index
      *
      * @param index The aspect to damage
+     * @param source
+     * @param damage
+     * @param originalHealth
      */
-    public void damageAspect(int index) {
+    public void damageAspect(int index, DamageSource source, float damage, float originalHealth) {
         var aspect = getAspect(index);
         if (aspect == null) return;
 
         final int nextIndex = index + 1;
         final var nextAspect = getAspect(nextIndex);
-        if (nextAspect != null) damageAspect(nextIndex);
+        if (nextAspect != null) damageAspect(nextIndex, source, damage, originalHealth);
 
-        aspect.onBroken();
+        aspect.onBroken(source, damage, originalHealth);
         VictusPackets.sendAspectBreak((ServerPlayerEntity) provider, index);
     }
 

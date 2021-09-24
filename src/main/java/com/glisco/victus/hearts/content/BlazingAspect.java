@@ -1,11 +1,16 @@
 package com.glisco.victus.hearts.content;
 
+import com.glisco.owo.particles.ServerParticles;
+import com.glisco.owo.util.VectorSerializer;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
-import com.ibm.icu.util.CodePointTrie;
-import net.minecraft.entity.EntityType;
+import com.glisco.victus.network.VictusParticleEvents;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.SmallFireballEntity;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.Box;
 
 public class BlazingAspect extends HeartAspect {
 
@@ -16,12 +21,18 @@ public class BlazingAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak() {
-        double speed = 1.5;
-        SmallFireballEntity fire1 = new SmallFireballEntity(EntityType.SMALL_FIREBALL, player.world);
-        fire1.updatePositionAndAngles(player.getX()+1, player.getY()+1, player.getZ(),0,0);
-        player.world.spawnEntity(fire1);
-        fire1.setVelocity(1,0,0);
+    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+        ServerParticles.issueEvent((ServerWorld) player.world, player.getBlockPos(),
+                VictusParticleEvents.BLAZING_FLAMES,
+                ServerParticles.writeNbt(VectorSerializer.store(player.getPos(), new NbtCompound(), "PlayerPos")));
 
+        var entities = player.world.getEntitiesByClass(HostileEntity.class, new Box(player.getBlockPos()).expand(5), (p) -> true);
+
+        for (int i = 0; i < 4; i++) {
+            if (entities.size() < 1) return;
+            var entity = entities.get(player.world.random.nextInt(entities.size()));
+            entity.damage(DamageSource.IN_FIRE, 3);
+            entity.setOnFireFor(4);
+        }
     }
 }

@@ -6,6 +6,7 @@ import com.glisco.victus.item.VictusItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -20,7 +21,7 @@ public class TotemAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak() {
+    public void handleBreak(DamageSource source, float damage, float originalHealth) {
         player.setHealth(player.getHealth() + 15);
         player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 1.0F);
     }

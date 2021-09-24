@@ -3,6 +3,7 @@ package com.glisco.victus.hearts.content;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.hearts.OverlaySpriteProvider;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
@@ -34,7 +35,7 @@ public class PotionAspect extends HeartAspect implements OverlaySpriteProvider {
     }
 
     @Override
-    public void handleBreak() {
+    public void handleBreak(DamageSource source, float damage, float originalHealth) {
         List<StatusEffectInstance> list = potion.getEffects();
 
         for (StatusEffectInstance statusEffectInstance : list) {

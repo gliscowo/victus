@@ -3,6 +3,7 @@ package com.glisco.victus.hearts.content;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.util.math.Vec3d;
@@ -16,7 +17,7 @@ public class ArcheryAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak() {
+    public void handleBreak(DamageSource source, float damage, float originalHealth) {
         for (int i = 0; i < 9; i++) {
             if (i == 4) continue;
 
