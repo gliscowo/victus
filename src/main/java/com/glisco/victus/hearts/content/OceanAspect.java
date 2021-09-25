@@ -25,8 +25,9 @@ public class OceanAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         player.removeStatusEffect(StatusEffects.CONDUIT_POWER);
         player.removeStatusEffect(StatusEffects.DOLPHINS_GRACE);
+        return false;
     }
 }

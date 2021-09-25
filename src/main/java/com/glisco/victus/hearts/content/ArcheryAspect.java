@@ -17,7 +17,7 @@ public class ArcheryAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         for (int i = 0; i < 9; i++) {
             if (i == 4) continue;
 
@@ -30,5 +30,6 @@ public class ArcheryAspect extends HeartAspect {
 
             player.world.spawnEntity(arrow);
         }
+        return false;
     }
 }

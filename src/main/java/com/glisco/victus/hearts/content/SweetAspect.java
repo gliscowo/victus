@@ -16,7 +16,8 @@ public class SweetAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1));
+        return false;
     }
 }

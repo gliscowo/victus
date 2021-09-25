@@ -81,10 +81,10 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
      * Also recursively backtracks to damage all aspects
      * prior to the given index
      *
-     * @param index The aspect to damage
-     * @param source
-     * @param damage
-     * @param originalHealth
+     * @param index          The aspect to damage
+     * @param source         The {@link DamageSource} that caused this aspect to break
+     * @param damage         The damage that was inflicted by said source
+     * @param originalHealth The original health the player had before being damaged
      */
     public void damageAspect(int index, DamageSource source, float damage, float originalHealth) {
         var aspect = getAspect(index);
@@ -94,13 +94,20 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
         final var nextAspect = getAspect(nextIndex);
         if (nextAspect != null) damageAspect(nextIndex, source, damage, originalHealth);
 
-        aspect.onBroken(source, damage, originalHealth);
-        VictusPackets.sendAspectBreak((ServerPlayerEntity) provider, index);
+        VictusPackets.sendAspectBreak((ServerPlayerEntity) provider, index, aspect.onBroken(source, damage, originalHealth));
     }
 
     @Nullable
     public HeartAspect getAspect(int index) {
         return index < 0 || index > effectiveSize() - 1 ? null : aspects.get(index);
+    }
+
+    @Nullable
+    public int findFirstIndex(HeartAspect.Type type) {
+        for (int i = 0; i < this.effectiveSize(); i++) {
+            if (this.getAspect(i).getType() == type) return i;
+        }
+        return -1;
     }
 
     public boolean hasActiveAspect(HeartAspect.Type type) {

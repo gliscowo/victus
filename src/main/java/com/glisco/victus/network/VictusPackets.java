@@ -1,6 +1,7 @@
 package com.glisco.victus.network;
 
 import com.glisco.victus.Victus;
+import com.glisco.victus.hearts.HeartAspect;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -21,18 +22,18 @@ public class VictusPackets {
         ClientPlayNetworking.registerGlobalReceiver(ASPECT_BROKEN, VictusPackets::onAspectBroken);
     }
 
-    public static void sendAspectBreak(ServerPlayerEntity player, int index) {
+    public static void sendAspectBreak(ServerPlayerEntity player, int index, boolean callHandler) {
         final var buf = PacketByteBufs.create();
         buf.writeVarInt(index);
+        buf.writeBoolean(callHandler);
         ServerPlayNetworking.send(player, ASPECT_BROKEN, buf);
     }
 
     @Environment(EnvType.CLIENT)
     private static void onAspectBroken(MinecraftClient minecraftClient, ClientPlayNetworkHandler clientPlayNetworkHandler, PacketByteBuf byteBuf, PacketSender packetSender) {
         final int index = byteBuf.readVarInt();
-        minecraftClient.execute(() -> {
-            Victus.ASPECTS.get(minecraftClient.player).getAspect(index).onBrokenClient();
-        });
+        final boolean callHandler = byteBuf.readBoolean();
+        minecraftClient.execute(HeartAspect.createBreakEvent(minecraftClient, index, callHandler));
     }
 
 }

@@ -35,7 +35,7 @@ public class PotionAspect extends HeartAspect implements OverlaySpriteProvider {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         List<StatusEffectInstance> list = potion.getEffects();
 
         for (StatusEffectInstance statusEffectInstance : list) {
@@ -47,6 +47,7 @@ public class PotionAspect extends HeartAspect implements OverlaySpriteProvider {
         }
 
         this.setPotion(Potions.EMPTY);
+        return false;
     }
 
     @Override

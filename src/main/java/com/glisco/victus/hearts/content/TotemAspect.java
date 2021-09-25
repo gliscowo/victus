@@ -21,9 +21,10 @@ public class TotemAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         player.setHealth(player.getHealth() + 15);
         player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 1.0F);
+        return true;
     }
 
     @Override

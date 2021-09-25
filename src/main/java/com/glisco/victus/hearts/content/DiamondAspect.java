@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class DiamondAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("diamond"), 1, 10, DiamondAspect::new);
+    public static final Type TYPE = new Type(Victus.id("diamond"), 1, 10, ALWAYS_UPDATE, DiamondAspect::new);
 
     private static final Multimap<EntityAttribute, EntityAttributeModifier> MODIFIER;
 
@@ -35,7 +35,8 @@ public class DiamondAspect extends HeartAspect {
     }
 
     @Override
-    protected void handleBreak(DamageSource source, float damage, float originalHealth) {
+    protected boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         player.getAttributes().removeModifiers(MODIFIER);
+        return false;
     }
 }

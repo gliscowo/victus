@@ -4,6 +4,7 @@ import com.glisco.victus.Victus;
 import com.glisco.victus.item.HeartAspectItem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -23,11 +24,12 @@ public class HeartAspect implements ItemConvertible {
     protected final PlayerEntity player;
 
     private final Type type;
-    private int cooldown = -1;
+    private int cooldown;
 
     public HeartAspect(PlayerEntity player, Type type) {
         this.player = player;
         this.type = type;
+        this.cooldown = getRechargeDuration();
     }
 
     public final NbtCompound toNbt() {
@@ -85,26 +87,37 @@ public class HeartAspect implements ItemConvertible {
     /**
      * Called on the client to sync a broken aspect state with the server
      * and play possible client-side effects
+     *
+     * @param callHandler If the implementor's handler method should be called
      */
     @Environment(EnvType.CLIENT)
-    public final void onBrokenClient() {
-        if (this.active()) this.handleBreakClient();
+    public final void onBrokenClient(boolean callHandler) {
+        if (this.active() && callHandler) this.handleBreakClient();
 
         this.cooldown = getRechargeDuration();
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static Runnable createBreakEvent(MinecraftClient client, int index, boolean callHandler) {
+        return () -> Victus.ASPECTS.get(client.player).getAspect(index).onBrokenClient(callHandler);
     }
 
     /**
      * Call this to signal that this aspect has received damage
      * Will delegate to implementation for effects and put this
      * aspect on cooldown
-     * @param source
-     * @param damage
-     * @param originalHealth
+     *
+     * @param source         The {@link DamageSource} that caused this aspect to break
+     * @param damage         The damage that was inflicted by said source
+     * @param originalHealth The original health the player had before being damaged
+     * @return {@code true} if the client should receive a break event
      */
-    public final void onBroken(DamageSource source, float damage, float originalHealth) {
-        if (this.active()) this.handleBreak(source, damage, originalHealth);
+    public final boolean onBroken(DamageSource source, float damage, float originalHealth) {
+        boolean shouldCallClient = false;
+        if (this.active()) shouldCallClient = this.handleBreak(source, damage, originalHealth);
 
         this.cooldown = this.getRechargeDuration();
+        return shouldCallClient;
     }
 
     /**
@@ -141,12 +154,14 @@ public class HeartAspect implements ItemConvertible {
 
     /**
      * Called when this aspect has been broken
-     * @param source
-     * @param damage
-     * @param originalHealth
+     *
+     * @param source         The {@link DamageSource} that caused this aspect to break
+     * @param damage         The damage that was inflicted by said source
+     * @param originalHealth The original health the player had before being damaged
+     * @return {@code true} if the client should receive a break event
      */
-    protected void handleBreak(DamageSource source, float damage, float originalHealth) {
-
+    protected boolean handleBreak(DamageSource source, float damage, float originalHealth) {
+        return false;
     }
 
     /**
@@ -169,16 +184,15 @@ public class HeartAspect implements ItemConvertible {
         return HeartAspectItem.getItem(type);
     }
 
-
-    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, Predicate<PlayerEntity> updateCondition, Function<PlayerEntity, HeartAspect> factory) {
+    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, Predicate<PlayerEntity> updateCondition,
+                                    Function<PlayerEntity, HeartAspect> factory) {
 
         /**
-         * @param id The registry ID of this type
-         * @param textureIndex The index into the atlas texture where this aspect's texture is located
+         * @param id                       The registry ID of this type
+         * @param textureIndex             The index into the atlas texture where this aspect's texture is located
          * @param standardRechargeDuration The default recharge duration of this aspect type, can be overridden dynamically
-         * @param updateCondition The conditions under which to call the {@link HeartAspect#update()} function,
-         * @param factory The aspect factory
-         *
+         * @param updateCondition          The conditions under which to call the {@link HeartAspect#update()} function,
+         * @param factory                  The aspect factory
          * @see HeartAspect#belowHealth(float)
          * @see HeartAspect#belowHealthPercentage(float)
          */

@@ -17,10 +17,11 @@ public class CreeperAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         player.getServer().execute(() -> {
             player.world.createExplosion(null, SuicideDamageSource.create(), new EntityExplosionBehavior(player), player.getX(), player.getY(), player.getZ(), 3f, false, Explosion.DestructionType.NONE);
         });
+        return false;
     }
 
 }

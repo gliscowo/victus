@@ -5,8 +5,9 @@ import com.glisco.owo.util.VectorSerializer;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.network.VictusParticleEvents;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.HostileEntity;
+import net.minecraft.entity.passive.TameableEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
@@ -21,18 +22,20 @@ public class BlazingAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
         ServerParticles.issueEvent((ServerWorld) player.world, player.getBlockPos(),
                 VictusParticleEvents.BLAZING_FLAMES,
                 ServerParticles.writeNbt(VectorSerializer.store(player.getPos(), new NbtCompound(), "PlayerPos")));
 
-        var entities = player.world.getEntitiesByClass(HostileEntity.class, new Box(player.getBlockPos()).expand(5), (p) -> true);
+        var entities = player.world.getEntitiesByClass(LivingEntity.class, new Box(player.getBlockPos()).expand(5), (p) -> p != player && !(p instanceof TameableEntity tameable && tameable.isOwner(player)));
 
         for (int i = 0; i < 4; i++) {
-            if (entities.size() < 1) return;
+            if (entities.size() < 1) return false;
             var entity = entities.get(player.world.random.nextInt(entities.size()));
             entity.damage(DamageSource.IN_FIRE, 3);
             entity.setOnFireFor(4);
         }
+
+        return false;
     }
 }

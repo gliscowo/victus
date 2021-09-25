@@ -21,19 +21,22 @@ public class LightAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
-        if (!source.isFromFalling()) return;
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
+        if (!source.isFromFalling()) return false;
 
         this.player.setHealth(originalHealth);
         player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 2.0F);
+        return true;
     }
 
     @Override
     protected void handleBreakClient() {
         MinecraftClient.getInstance().gameRenderer.showFloatingItem(new ItemStack(VictusItems.LIGHT_HEART_ASPECT));
+
         ClientParticles.setParticleCount(40);
         ClientParticles.setVelocity(new Vec3d(0, .1, 0));
         ClientParticles.spawn(ParticleTypes.POOF, player.world, player.getPos().add(0, 1, 0), 3);
+
         MinecraftClient.getInstance().particleManager.addEmitter(player, ParticleTypes.POOF, 10);
     }
 }

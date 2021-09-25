@@ -14,7 +14,7 @@ public class IronAspect extends HeartAspect {
     }
 
     @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
-
+    public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
+        return false;
     }
 }

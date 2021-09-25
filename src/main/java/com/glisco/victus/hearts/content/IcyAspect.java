@@ -13,8 +13,4 @@ public class IcyAspect extends HeartAspect {
         super(player, TYPE);
     }
 
-    @Override
-    public void handleBreak(DamageSource source, float damage, float originalHealth) {
-
-    }
 }

@@ -49,9 +49,9 @@ public abstract class LivingEntityMixin extends Entity {
         if (!((Object) this instanceof PlayerEntity)) return t;
         if (!Victus.ASPECTS.get(this).hasActiveAspect(IcyAspect.TYPE)) return t;
 
-        if (!(this.world.getBlockState(this.getVelocityAffectingPos()).getBlock() instanceof TransparentBlock)) return t;
+//        if (!(this.world.getBlockState(this.getVelocityAffectingPos()).getBlock() instanceof TransparentBlock)) return t;
 
-        return .6f;
+        return 1f;
     }
 
 }
