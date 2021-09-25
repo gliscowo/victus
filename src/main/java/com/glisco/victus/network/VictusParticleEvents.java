@@ -25,7 +25,7 @@ public class VictusParticleEvents {
                     ClientParticles.spawn(ParticleTypes.FLAME, client.world, playerPos, 3);
                 }
 
-                client.world.playSound(pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.PLAYERS, 1, 1, true);
+                client.world.playSound(pos, SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS, 1, 1, true);
             });
         });
     }

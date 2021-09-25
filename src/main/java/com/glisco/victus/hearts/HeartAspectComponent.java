@@ -102,7 +102,6 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
         return index < 0 || index > effectiveSize() - 1 ? null : aspects.get(index);
     }
 
-    @Nullable
     public int findFirstIndex(HeartAspect.Type type) {
         for (int i = 0; i < this.effectiveSize(); i++) {
             if (this.getAspect(i).getType() == type) return i;

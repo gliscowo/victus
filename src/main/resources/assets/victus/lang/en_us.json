@@ -47,6 +47,9 @@
 
   "text.victus.recharge_duration": "§7Recharge Duration: %1$.1fs",
   "itemGroup.victus.victus": "Victus",
+  "itemGroup.victus.victus.button.discord": "Discord",
+  "itemGroup.victus.victus.button.github": "GitHub",
+  "itemGroup.victus.victus.button.remove_first_heart": "Remove First Heart",
 
   "death.attack.suicide": "%1$s aw man"
 }

@@ -3,7 +3,9 @@ package com.glisco.victus;
 import com.glisco.owo.registration.reflect.FieldRegistrationHandler;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
+import com.glisco.victus.item.VictusItemGroup;
 import com.glisco.victus.item.VictusItems;
+import com.glisco.victus.network.VictusPackets;
 import com.glisco.victus.util.VictusPotions;
 import com.glisco.victus.util.VictusStatusEffects;
 import com.mojang.brigadier.arguments.FloatArgumentType;
@@ -29,7 +31,7 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
 
     public static final String MOD_ID = "victus";
     public static final ComponentKey<HeartAspectComponent> ASPECTS = ComponentRegistry.getOrCreate(id("aspects"), HeartAspectComponent.class);
-    public static final ItemGroup VICTUS_GROUP = FabricItemGroupBuilder.build(id("victus"), () -> new ItemStack(VictusItems.TOTEM_HEART_ASPECT));
+    public static final VictusItemGroup VICTUS_GROUP = new VictusItemGroup();
 
     @Override
     public void onInitialize() {
@@ -37,6 +39,10 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
         FieldRegistrationHandler.register(VictusItems.class, MOD_ID, false);
         FieldRegistrationHandler.register(VictusStatusEffects.class, MOD_ID, false);
         FieldRegistrationHandler.register(VictusPotions.class, MOD_ID, false);
+
+        VICTUS_GROUP.initialize();
+
+        VictusPackets.registerServerListeners();
 
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) ->
                 dispatcher.register(CommandManager.literal("damage").then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {
@@ -55,6 +61,6 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
 
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
-        registry.registerForPlayers(ASPECTS, HeartAspectComponent::new, RespawnCopyStrategy.NEVER_COPY);
+        registry.registerForPlayers(ASPECTS, HeartAspectComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
     }
 }

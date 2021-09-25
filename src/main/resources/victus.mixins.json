@@ -7,9 +7,11 @@
     "AreaEffectCloudEntityMixin",
     "BrewingRecipeRegistryInvoker",
     "ExperienceOrbEntityMixin",
+    "GoalSelectorAccessor",
     "LivingEntityMixin",
     "PlayerEntityMixin",
-    "PotionItemMixin"
+    "PotionItemMixin",
+    "VexEntityMixin"
   ],
   "client": [
     "client.InGameHudMixin"

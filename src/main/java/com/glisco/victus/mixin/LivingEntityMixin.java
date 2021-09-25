@@ -4,7 +4,6 @@ import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.content.IcyAspect;
 import com.glisco.victus.item.VictusItems;
 import com.glisco.victus.util.VictusStatusEffects;
-import net.minecraft.block.TransparentBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -48,8 +47,6 @@ public abstract class LivingEntityMixin extends Entity {
     private float removeSlipperiness(float t) {
         if (!((Object) this instanceof PlayerEntity)) return t;
         if (!Victus.ASPECTS.get(this).hasActiveAspect(IcyAspect.TYPE)) return t;
-
-//        if (!(this.world.getBlockState(this.getVelocityAffectingPos()).getBlock() instanceof TransparentBlock)) return t;
 
         return 1f;
     }
