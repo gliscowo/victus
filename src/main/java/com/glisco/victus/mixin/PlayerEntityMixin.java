@@ -1,11 +1,15 @@
 package com.glisco.victus.mixin;
 
 import com.glisco.victus.Victus;
+import com.glisco.victus.hearts.content.IronAspect;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,6 +35,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
     @Inject(method = "tick", at = @At("TAIL"))
     private void onEndTick(CallbackInfo ci) {
         Victus.ASPECTS.get(this).tick();
+
+        if (this.getHealth() >= this.getMaxHealth() * .35f) return;
+        if (!Victus.ASPECTS.get(this).hasInactiveAspect(IronAspect.TYPE)) return;
+
+        var golems = this.world.getEntitiesByClass(IronGolemEntity.class, new Box(this.getBlockPos()).expand(10), Entity::isAlive);
+        golems.forEach(ironGolemEntity -> ironGolemEntity.setTarget(this));
     }
 
 }
