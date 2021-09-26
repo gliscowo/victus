@@ -27,11 +27,11 @@ public class BlazingAspect extends HeartAspect {
                 VictusParticleEvents.BLAZING_FLAMES,
                 ServerParticles.writeNbt(VectorSerializer.store(player.getPos(), new NbtCompound(), "PlayerPos")));
 
-        var entities = player.world.getEntitiesByClass(LivingEntity.class, new Box(player.getBlockPos()).expand(5), (p) -> p != player && !(p instanceof TameableEntity tameable && tameable.isOwner(player)));
+        var entities = player.world.getEntitiesByClass(LivingEntity.class, new Box(player.getBlockPos()).expand(4), (p) -> p != player && !(p instanceof TameableEntity tameable && tameable.isOwner(player)));
 
         for (int i = 0; i < 4; i++) {
             if (entities.size() < 1) return false;
-            var entity = entities.get(player.world.random.nextInt(entities.size()));
+            var entity = entities.remove(player.world.random.nextInt(entities.size()));
             entity.damage(DamageSource.IN_FIRE, 3);
             entity.setOnFireFor(4);
         }

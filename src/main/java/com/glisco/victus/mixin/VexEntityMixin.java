@@ -1,9 +1,11 @@
 package com.glisco.victus.mixin;
 
+import com.glisco.victus.util.SlaveRevengeGoal;
 import com.glisco.victus.util.VictusVexExtension;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.FollowTargetGoal;
+import net.minecraft.entity.ai.goal.RevengeGoal;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.VexEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +21,8 @@ public abstract class VexEntityMixin extends MobEntity implements VictusVexExten
 
     @Override
     public void replaceTargetGoal(PlayerEntity owner) {
-        ((GoalSelectorAccessor) targetSelector).getGoals().removeIf(prioritizedGoal -> prioritizedGoal.getGoal() instanceof FollowTargetGoal);
+        ((GoalSelectorAccessor) targetSelector).getGoals().removeIf(prioritizedGoal -> prioritizedGoal.getGoal() instanceof FollowTargetGoal || prioritizedGoal.getGoal() instanceof RevengeGoal);
+        this.targetSelector.add(1, new SlaveRevengeGoal((VexEntity) (Object) this, owner));
         this.targetSelector.add(3, new FollowTargetGoal<>(this, LivingEntity.class, 10, true, false,
                 livingEntity -> livingEntity != owner && !(livingEntity instanceof VexEntity)));
     }

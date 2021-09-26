@@ -17,7 +17,7 @@ public class IcyAspect extends HeartAspect {
 
     @Override
     protected boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 0, true, false));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200, 0, true, false));
         return false;
     }
 }

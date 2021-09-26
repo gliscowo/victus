@@ -3,6 +3,7 @@ package com.glisco.victus.hearts.content;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.util.VictusAreaEffectCloudExtension;
+import com.glisco.victus.util.VictusStatusEffects;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -30,7 +31,7 @@ public class DraconicAspect extends HeartAspect {
         areaEffectCloud.setRadius(2f);
         areaEffectCloud.setDuration(150);
         areaEffectCloud.setRadiusGrowth((7f - areaEffectCloud.getRadius()) / areaEffectCloud.getDuration());
-        areaEffectCloud.addEffect(new StatusEffectInstance(StatusEffects.INSTANT_DAMAGE, 1, 1));
+        areaEffectCloud.addEffect(new StatusEffectInstance(VictusStatusEffects.TRUE_DAMAGE, 1, 0));
 
         player.world.spawnEntity(areaEffectCloud);
         return false;
