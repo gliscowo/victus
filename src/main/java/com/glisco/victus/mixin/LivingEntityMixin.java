@@ -12,7 +12,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.Monster;
 import net.minecraft.entity.passive.IronGolemEntity;
-import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -38,17 +37,13 @@ public abstract class LivingEntityMixin extends Entity {
             if (!entity.hasStatusEffect(VictusStatusEffects.HEARTBLEED)) return;
 
             entity.dropItem(VictusItems.BLANK_HEART_ASPECT);
-        } else if (entity instanceof VillagerEntity villager) {
-            if (villager.getVillagerData().getLevel() < 4) return;
-
-            entity.dropItem(VictusItems.BROKEN_HEART);
         }
     }
 
     @SuppressWarnings("ConstantConditions")
     @Inject(method = "dropLoot", at = @At("HEAD"), cancellable = true)
     private void preventGolemDrops(DamageSource source, boolean causedByPlayer, CallbackInfo ci) {
-        if (!((Object)this instanceof IronGolemEntity && Victus.ENTITY_FLAGS.get(this).flagSet(IronAspect.NO_DROPS_FLAG)))return;
+        if (!((Object) this instanceof IronGolemEntity && Victus.ENTITY_FLAGS.get(this).flagSet(IronAspect.NO_DROPS_FLAG))) return;
         ci.cancel();
     }
 

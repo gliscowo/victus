@@ -17,8 +17,13 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -51,6 +56,11 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
                     context.getSource().getPlayer().damage(DamageSource.OUT_OF_WORLD, FloatArgumentType.getFloat(context, "amount"));
                     return 0;
                 }))));
+
+        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+            if (!id.equals(LootTables.BURIED_TREASURE_CHEST)) return;
+            supplier.withPool(FabricLootPoolBuilder.builder().with(ItemEntry.builder(VictusItems.BROKEN_HEART)).conditionally(RandomChanceLootCondition.builder(.75f)).build());
+        });
     }
 
     public static Logger getLogger() {
