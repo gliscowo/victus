@@ -6,6 +6,7 @@ import com.glisco.victus.hearts.HeartAspectRegistry;
 import com.glisco.victus.item.VictusItemGroup;
 import com.glisco.victus.item.VictusItems;
 import com.glisco.victus.network.VictusPackets;
+import com.glisco.victus.util.EntityFlagComponent;
 import com.glisco.victus.util.VictusPotions;
 import com.glisco.victus.util.VictusStatusEffects;
 import com.mojang.brigadier.arguments.FloatArgumentType;
@@ -15,11 +16,9 @@ import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -30,7 +29,10 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
     private static final Logger LOGGER = LogManager.getLogger("Victus");
 
     public static final String MOD_ID = "victus";
+
     public static final ComponentKey<HeartAspectComponent> ASPECTS = ComponentRegistry.getOrCreate(id("aspects"), HeartAspectComponent.class);
+    public static final ComponentKey<EntityFlagComponent> ENTITY_FLAGS = ComponentRegistry.getOrCreate(id("flags"), EntityFlagComponent.class);
+
     public static final VictusItemGroup VICTUS_GROUP = new VictusItemGroup();
 
     @Override
@@ -62,5 +64,6 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
     @Override
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.registerForPlayers(ASPECTS, HeartAspectComponent::new, RespawnCopyStrategy.ALWAYS_COPY);
+        registry.registerFor(Entity.class, ENTITY_FLAGS, entity -> new EntityFlagComponent());
     }
 }

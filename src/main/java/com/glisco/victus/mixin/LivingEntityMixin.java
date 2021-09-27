@@ -1,7 +1,9 @@
 package com.glisco.victus.mixin;
 
 import com.glisco.victus.Victus;
+import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.hearts.content.IcyAspect;
+import com.glisco.victus.hearts.content.IronAspect;
 import com.glisco.victus.item.VictusItems;
 import com.glisco.victus.util.VictusStatusEffects;
 import net.minecraft.entity.Entity;
@@ -9,6 +11,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.Monster;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.world.World;
@@ -43,10 +46,17 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @SuppressWarnings("ConstantConditions")
+    @Inject(method = "dropLoot", at = @At("HEAD"), cancellable = true)
+    private void preventGolemDrops(DamageSource source, boolean causedByPlayer, CallbackInfo ci) {
+        if (!((Object)this instanceof IronGolemEntity && Victus.ENTITY_FLAGS.get(this).flagSet(IronAspect.NO_DROPS_FLAG)))return;
+        ci.cancel();
+    }
+
+    @SuppressWarnings("ConstantConditions")
     @ModifyVariable(method = "travel", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;onGround:Z", ordinal = 2), ordinal = 0)
     private float removeSlipperiness(float t) {
         if (!((Object) this instanceof PlayerEntity)) return t;
-        if (!Victus.ASPECTS.get(this).hasActiveAspect(IcyAspect.TYPE)) return t;
+        if (!Victus.ASPECTS.get(this).hasAspect(IcyAspect.TYPE, HeartAspect.IS_ACTIVE)) return t;
 
         return 1f;
     }

@@ -15,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class HeartAspectComponent implements Component, AutoSyncedComponent {
 
@@ -77,6 +78,18 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
     }
 
     /**
+     * Instantly recharges all inactive aspects in this component
+     * by the given amount of their respective recharge duration
+     *
+     * @param percentage The percentage of each aspect's recharge duration to skip
+     */
+    public void rechargeAllByPercentage(float percentage) {
+        for (var aspect : aspects) {
+            aspect.rechargeByPercentage(percentage);
+        }
+    }
+
+    /**
      * Damages the aspect at the current index
      * Also recursively backtracks to damage all aspects
      * prior to the given index
@@ -102,26 +115,18 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
         return index < 0 || index > effectiveSize() - 1 ? null : aspects.get(index);
     }
 
-    public int findFirstIndex(HeartAspect.Type type) {
+    public int findFirstIndex(HeartAspect.Type type, Predicate<HeartAspect> filter) {
         for (int i = 0; i < this.effectiveSize(); i++) {
-            if (this.getAspect(i).getType() == type) return i;
+            final var aspect = this.getAspect(i);
+            if (aspect.getType() == type && filter.test(aspect)) return i;
         }
         return -1;
     }
 
-    public boolean hasActiveAspect(HeartAspect.Type type) {
+    public boolean hasAspect(HeartAspect.Type type, Predicate<HeartAspect> filter) {
         for (var aspect : this.aspects) {
             if (aspect.getType() != type) continue;
-            if (!aspect.active()) continue;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean hasInactiveAspect(HeartAspect.Type type) {
-        for (var aspect : this.aspects) {
-            if (aspect.getType() != type) continue;
-            if (aspect.active()) continue;
+            if (!filter.test(aspect)) continue;
             return true;
         }
         return false;

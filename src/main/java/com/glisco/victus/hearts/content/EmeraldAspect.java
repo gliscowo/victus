@@ -15,6 +15,12 @@ public class EmeraldAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        return false;
+        Victus.ASPECTS.get(player).rechargeAllByPercentage(.20f);
+        return true;
+    }
+
+    @Override
+    protected void handleBreakClient() {
+        Victus.ASPECTS.get(player).rechargeAllByPercentage(.20f);
     }
 }

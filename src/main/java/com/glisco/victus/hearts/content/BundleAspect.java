@@ -15,7 +15,7 @@ public class BundleAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        player.heal(6f);
+        player.heal(4f);
         return false;
     }
 }

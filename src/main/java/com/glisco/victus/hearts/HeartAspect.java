@@ -17,6 +17,9 @@ import java.util.function.Predicate;
 
 public class HeartAspect implements ItemConvertible {
 
+    public static final Predicate<HeartAspect> IS_ACTIVE = HeartAspect::active;
+    public static final Predicate<HeartAspect> IS_NOT_ACTIVE = heartAspect -> !heartAspect.active();
+
     public static final Identifier HEART_ATLAS_TEXTURE = Victus.id("textures/gui/hearts.png");
     protected static final Predicate<PlayerEntity> NEVER_UPDATE = p -> false;
     protected static final Predicate<PlayerEntity> ALWAYS_UPDATE = p -> true;
@@ -125,6 +128,19 @@ public class HeartAspect implements ItemConvertible {
      */
     public final boolean active() {
         return this.cooldown == -1;
+    }
+
+    /**
+     * Instantly recharges this aspect by the given percentage of its recharge
+     * duration, provided that it currently is on cooldown
+     *
+     * @param percentage The percentage of the cooldown to skip
+     */
+    public final void rechargeByPercentage(float percentage) {
+        if (this.active()) return;
+
+        this.cooldown -= this.getRechargeDuration() * percentage;
+        if (this.cooldown < -1) this.cooldown = -1;
     }
 
     /**

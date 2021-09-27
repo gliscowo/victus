@@ -1,6 +1,7 @@
 package com.glisco.victus.mixin;
 
 import com.glisco.victus.Victus;
+import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.hearts.content.IronAspect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -37,7 +38,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         Victus.ASPECTS.get(this).tick();
 
         if (this.getHealth() >= this.getMaxHealth() * .35f) return;
-        if (!Victus.ASPECTS.get(this).hasInactiveAspect(IronAspect.TYPE)) return;
+        if (!Victus.ASPECTS.get(this).hasAspect(IronAspect.TYPE, HeartAspect.IS_NOT_ACTIVE)) return;
 
         var golems = this.world.getEntitiesByClass(IronGolemEntity.class, new Box(this.getBlockPos()).expand(10), Entity::isAlive);
         golems.forEach(ironGolemEntity -> ironGolemEntity.setTarget(this));

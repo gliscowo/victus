@@ -33,7 +33,8 @@
   },
   "custom": {
     "cardinal-components": [
-      "victus:aspects"
+      "victus:aspects",
+      "victus:flags"
     ]
   }
 }
