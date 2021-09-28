@@ -7,8 +7,6 @@ import net.minecraft.item.Item;
 
 public class VictusItems implements ItemRegistryContainer {
 
-    public static final Item BLANK_HEART_ASPECT = new Item(new Item.Settings().group(Victus.VICTUS_GROUP));
-
     public static final Item GRILLED_HEART_ASPECT = new HeartAspectItem(GrilledAspect.TYPE);
     public static final Item BUNDLE_HEART_ASPECT = new HeartAspectItem(BundleAspect.TYPE);
     public static final Item CREEPER_HEART_ASPECT = new HeartAspectItem(CreeperAspect.TYPE);
@@ -28,5 +26,7 @@ public class VictusItems implements ItemRegistryContainer {
     public static final Item LAPIS_HEART_ASPECT = new HeartAspectItem(LapisAspect.TYPE);
     public static final Item SWEET_HEART_ASPECT = new HeartAspectItem(SweetAspect.TYPE);
 
+    public static final Item VOID_HEART_ASPECT = new VoidAspectItem();
+    public static final Item BLANK_HEART_ASPECT = new Item(new Item.Settings().group(Victus.VICTUS_GROUP));
     public static final Item BROKEN_HEART = new BrokenHeartItem();
 }

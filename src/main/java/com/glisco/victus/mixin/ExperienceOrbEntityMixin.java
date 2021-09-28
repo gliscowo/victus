@@ -23,6 +23,7 @@ public abstract class ExperienceOrbEntityMixin {
     @Inject(method = "repairPlayerGears", at = @At("HEAD"), cancellable = true)
     private void healIfAspectPresent(PlayerEntity player, int amount, CallbackInfoReturnable<Integer> cir) {
         if (!(player instanceof ServerPlayerEntity serverPlayer)) return;
+        if (serverPlayer.getMaxHealth() - serverPlayer.getHealth() < 1f) return;
         if (amount < 3) return;
 
         final var aspects = Victus.ASPECTS.get(player);

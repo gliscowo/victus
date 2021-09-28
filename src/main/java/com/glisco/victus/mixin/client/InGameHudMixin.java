@@ -5,11 +5,20 @@ import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.OverlaySpriteProvider;
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.util.math.MathHelper;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,6 +28,17 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 @Mixin(InGameHud.class)
 public abstract class InGameHudMixin extends DrawableHelper {
 
+    @Shadow
+    @Final
+    private MinecraftClient client;
+
+    @Shadow
+    protected abstract void renderHealthBar(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking);
+
+    @Shadow private int ticks;
+    @Shadow private int scaledWidth;
+    @Shadow private int scaledHeight;
+    @Shadow private int renderHealthValue;
     @Unique
     int heartX, heartY, heartIndex;
 
@@ -68,6 +88,31 @@ public abstract class InGameHudMixin extends DrawableHelper {
         }
 
         RenderSystem.setShaderTexture(0, DrawableHelper.GUI_ICONS_TEXTURE);
+    }
+
+    @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;hasStatusBars()Z"))
+    private void renderHeartsInVictusTab(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
+        if (!(client.currentScreen instanceof CreativeInventoryScreen screen)) return;
+        if (ItemGroup.GROUPS[screen.getSelectedTab()] != Victus.VICTUS_GROUP) return;
+
+        final var player = client.player;
+
+        int healthBarX = this.scaledWidth / 2 - 91;
+        int healthBarY = this.scaledHeight - 35;
+
+        int playerHealth = MathHelper.ceil(player.getHealth());
+
+        float renderMaxHealth = (float) Math.max(player.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH), Math.max(this.renderHealthValue, playerHealth));
+        int absorption = MathHelper.ceil(player.getAbsorptionAmount());
+
+        // evil mojang line calculation code
+        // wtf
+        int r = Math.max(10 - (MathHelper.ceil((renderMaxHealth + absorption) / 2.0F / 10.0F) - 2), 3);
+
+        // int r = Math.max(12 - MathHelper.ceil((renderMaxHealth + absorption) * .05f), 3);
+        // why does this better version reside in a comment? what do i know
+
+        this.renderHealthBar(matrices, player, healthBarX, healthBarY, r, -1, renderMaxHealth, playerHealth, this.renderHealthValue, absorption, false);
     }
 
     private static void renderAspect(MatrixStack matrices, int x, int y, int textureIndex, float rechargeProgress) {

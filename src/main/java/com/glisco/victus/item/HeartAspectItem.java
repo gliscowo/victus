@@ -2,10 +2,13 @@ package com.glisco.victus.item;
 
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
+import com.glisco.victus.network.VictusParticleEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
@@ -47,6 +50,8 @@ public class HeartAspectItem extends EdibleItem {
     void onEaten(ItemStack stack, World world, PlayerEntity eater) {
         final var aspectComponent = Victus.ASPECTS.get(eater);
         aspectComponent.addAspect(aspectType.factory().apply(eater));
+
+        VictusParticleEvents.dispatchHeartParticles((ServerWorld) world, (ServerPlayerEntity) eater, false);
     }
 
     @Override
