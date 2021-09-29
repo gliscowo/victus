@@ -11,7 +11,7 @@ import net.minecraft.particle.ParticleTypes;
 
 public class DraconicAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("draconic"), 11, 10, DraconicAspect::new);
+    public static final Type TYPE = new Type(Victus.id("draconic"), 11, 100, DraconicAspect::new);
     public static final int IGNORE_OWNER_FLAG = 0x1;
 
     public DraconicAspect(PlayerEntity player) {

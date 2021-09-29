@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class IcyAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("icy"), 10, 10, IcyAspect::new);
+    public static final Type TYPE = new Type(Victus.id("icy"), 10, 40, IcyAspect::new);
 
     public IcyAspect(PlayerEntity player) {
         super(player, TYPE);

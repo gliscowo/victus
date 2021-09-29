@@ -10,7 +10,7 @@ import net.minecraft.world.explosion.Explosion;
 
 public class CreeperAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("creeper"), 6, 10, CreeperAspect::new);
+    public static final Type TYPE = new Type(Victus.id("creeper"), 6, 200, CreeperAspect::new);
 
     public CreeperAspect(PlayerEntity player) {
         super(player, TYPE);

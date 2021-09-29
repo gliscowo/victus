@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class OceanAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("ocean"), 4, 10, HeartAspect.belowHealthPercentage(.75f), OceanAspect::new);
+    public static final Type TYPE = new Type(Victus.id("ocean"), 4, 50, HeartAspect.belowHealthPercentage(.75f), OceanAspect::new);
 
     public OceanAspect(PlayerEntity player) {
         super(player, TYPE);

@@ -17,7 +17,7 @@ import net.minecraft.world.ServerWorldAccess;
 
 public class EvokingAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("evoking"), 12, 10, EvokingAspect::new);
+    public static final Type TYPE = new Type(Victus.id("evoking"), 12, 100, EvokingAspect::new);
 
     public EvokingAspect(PlayerEntity player) {
         super(player, TYPE);

@@ -14,7 +14,7 @@ import net.minecraft.sound.SoundEvents;
 
 public class TotemAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("totem"), 0, 60, TotemAspect::new);
+    public static final Type TYPE = new Type(Victus.id("totem"), 0, 1800, TotemAspect::new);
 
     public TotemAspect(PlayerEntity player) {
         super(player, TYPE);

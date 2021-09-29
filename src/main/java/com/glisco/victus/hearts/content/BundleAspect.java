@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class BundleAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("bundle"), 2, 10, BundleAspect::new);
+    public static final Type TYPE = new Type(Victus.id("bundle"), 2, 100, BundleAspect::new);
 
     public BundleAspect(PlayerEntity player) {
         super(player, TYPE);

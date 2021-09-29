@@ -9,7 +9,7 @@ import net.minecraft.item.Items;
 
 public class GrilledAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("grilled"), 3, 10, GrilledAspect::new);
+    public static final Type TYPE = new Type(Victus.id("grilled"), 3, 60, GrilledAspect::new);
 
     public GrilledAspect(PlayerEntity player) {
         super(player, TYPE);

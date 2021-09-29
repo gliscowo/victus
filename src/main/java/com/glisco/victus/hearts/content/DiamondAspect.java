@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class DiamondAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("diamond"), 1, 10, ALWAYS_UPDATE, DiamondAspect::new);
+    public static final Type TYPE = new Type(Victus.id("diamond"), 1, 50, ALWAYS_UPDATE, DiamondAspect::new);
 
     private static final Multimap<EntityAttribute, EntityAttributeModifier> MODIFIER;
 
