@@ -56,7 +56,7 @@ public class HeartAspectItem extends EdibleItem {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText(this.getTranslationKey(stack) + ".description").formatted(Formatting.GRAY));
+        tooltip.add(new TranslatableText(this.getTranslationKey(stack) + ".description").formatted(Formatting.DARK_GRAY));
         tooltip.add(Text.of(""));
         tooltip.add(new TranslatableText("text.victus.recharge_duration", aspectType.standardRechargeDuration() / 20f).formatted(Formatting.BLUE));
     }

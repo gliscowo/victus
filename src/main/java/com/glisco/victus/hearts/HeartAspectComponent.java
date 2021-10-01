@@ -2,6 +2,7 @@ package com.glisco.victus.hearts;
 
 import com.glisco.victus.Victus;
 import com.glisco.victus.network.VictusPackets;
+import com.glisco.victus.util.VictusStatusEffects;
 import dev.onyxstudios.cca.api.v3.component.Component;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.entity.damage.DamageSource;
@@ -61,11 +62,13 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
     }
 
     public void tick() {
+        final int rechargeRate = provider.hasStatusEffect(VictusStatusEffects.RESURGENCE) ? 2 : 1;
+
         for (int i = 0; i < effectiveSize(); i++) {
             HeartAspect aspect = this.aspects.get(i);
             if (provider.getHealth() <= i * 2 + 1) return;
 
-            aspect.tick();
+            aspect.tick(rechargeRate);
             if (!aspect.active()) return;
         }
     }

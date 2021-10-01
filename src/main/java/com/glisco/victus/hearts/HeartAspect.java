@@ -60,8 +60,9 @@ public class HeartAspect implements ItemConvertible {
 
     }
 
-    public void tick() {
-        if (this.cooldown > -1) this.cooldown--;
+    public void tick(int rechargeRate) {
+        if (this.cooldown > -1) this.cooldown -= rechargeRate;
+        if (this.cooldown < -1) this.cooldown = -1;
         else if (this.type.updateCondition.test(player)) update();
     }
 

@@ -2,11 +2,13 @@ package com.glisco.victus.util;
 
 import com.glisco.owo.registration.reflect.AutoRegistryContainer;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.registry.Registry;
 
 public class VictusStatusEffects implements AutoRegistryContainer<StatusEffect> {
 
-    public static final HeartbleedStatusEffect HEARTBLEED = new HeartbleedStatusEffect();
+    public static final VictusStatusEffect HEARTBLEED = new VictusStatusEffect(StatusEffectCategory.NEUTRAL, 0xAE0000);
+    public static final VictusStatusEffect RESURGENCE = new VictusStatusEffect(StatusEffectCategory.BENEFICIAL, 0xAE7733);
     public static final TrueDamageStatusEffect TRUE_DAMAGE = new TrueDamageStatusEffect();
 
     @Override

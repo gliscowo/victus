@@ -1,5 +1,6 @@
 package com.glisco.victus;
 
+import com.glisco.owo.Owo;
 import com.glisco.owo.registration.reflect.FieldRegistrationHandler;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
@@ -21,9 +22,11 @@ import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.Items;
 import net.minecraft.loot.LootTables;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetNbtLootFunction;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
@@ -51,16 +54,26 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
 
         VictusPackets.registerServerListeners();
 
+        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+            if (id.equals(LootTables.BURIED_TREASURE_CHEST)) {
+                supplier.withPool(FabricLootPoolBuilder.builder()
+                        .with(ItemEntry.builder(VictusItems.BROKEN_HEART))
+                        .conditionally(RandomChanceLootCondition.builder(.75f)).build());
+            } else if (id.equals(LootTables.ABANDONED_MINESHAFT_CHEST) || id.equals(LootTables.SIMPLE_DUNGEON_CHEST)) {
+                supplier.withPool(FabricLootPoolBuilder.builder()
+                        .with(ItemEntry.builder(Items.SPLASH_POTION)
+                                .apply(SetNbtLootFunction.builder(VictusPotions.HEARTBLEED_POTION_NBT)))
+                        .conditionally(RandomChanceLootCondition.builder(.6f)).build());
+            }
+        });
+
+        if (!Owo.debugEnabled()) return;
+
         CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) ->
                 dispatcher.register(CommandManager.literal("damage").then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {
                     context.getSource().getPlayer().damage(DamageSource.OUT_OF_WORLD, FloatArgumentType.getFloat(context, "amount"));
                     return 0;
                 }))));
-
-        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
-            if (!id.equals(LootTables.BURIED_TREASURE_CHEST)) return;
-            supplier.withPool(FabricLootPoolBuilder.builder().with(ItemEntry.builder(VictusItems.BROKEN_HEART)).conditionally(RandomChanceLootCondition.builder(.75f)).build());
-        });
     }
 
     public static Logger getLogger() {
