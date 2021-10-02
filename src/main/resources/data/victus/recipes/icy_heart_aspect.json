@@ -7,16 +7,16 @@
   ],
   "key": {
     "s": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:blue_ice"
     },
     "u": {
       "item": "victus:blank_heart_aspect"
     },
     "t": {
-      "item": "minecraft:tnt"
+      "item": "minecraft:packed_ice"
     }
   },
   "result": {
-    "item": "victus:creeper_heart_aspect"
+    "item": "victus:icy_heart_aspect"
   }
 }

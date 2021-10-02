@@ -3,7 +3,10 @@ package com.glisco.victus.item;
 import com.glisco.owo.registration.reflect.ItemRegistryContainer;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.content.*;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ItemScatterer;
 
 public class VictusItems implements ItemRegistryContainer {
 
@@ -27,6 +30,12 @@ public class VictusItems implements ItemRegistryContainer {
     public static final Item SWEET_HEART_ASPECT = new HeartAspectItem(SweetAspect.TYPE);
 
     public static final Item VOID_HEART_ASPECT = new VoidAspectItem();
-    public static final Item BLANK_HEART_ASPECT = new Item(new Item.Settings().group(Victus.VICTUS_GROUP));
     public static final Item BROKEN_HEART = new BrokenHeartItem();
+    public static final Item BLANK_HEART_ASPECT = new Item(new Item.Settings().group(Victus.VICTUS_GROUP)) {
+        @Override
+        public void onItemEntityDestroyed(ItemEntity entity) {
+            if (!entity.isOnFire()) return;
+            ItemScatterer.spawn(entity.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(VictusItems.VOID_HEART_ASPECT));
+        }
+    };
 }

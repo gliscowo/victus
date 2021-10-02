@@ -7,16 +7,16 @@
   ],
   "key": {
     "s": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:magma_cream"
     },
     "u": {
       "item": "victus:blank_heart_aspect"
     },
     "t": {
-      "item": "minecraft:tnt"
+      "item": "minecraft:blaze_rod"
     }
   },
   "result": {
-    "item": "victus:creeper_heart_aspect"
+    "item": "victus:blazing_heart_aspect"
   }
 }

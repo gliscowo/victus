@@ -16,12 +16,14 @@ public class VictusPotions implements AutoRegistryContainer<Potion> {
     public static final Potion HEARTBLEED = new Potion(new StatusEffectInstance(VictusStatusEffects.HEARTBLEED, 400));
     public static final Potion RESURGENCE = new Potion(new StatusEffectInstance(VictusStatusEffects.RESURGENCE, 400));
     public static final Potion LONG_RESURGENCE = new Potion(new StatusEffectInstance(VictusStatusEffects.RESURGENCE, 800));
+    public static final Potion STRONG_RESURGENCE = new Potion(new StatusEffectInstance(VictusStatusEffects.RESURGENCE, 200, 1));
 
     @Override
     public void afterFieldProcessing() {
         BrewingRecipeRegistryInvoker.victus_register(Potions.HARMING, Items.GLOW_LICHEN, HEARTBLEED);
         BrewingRecipeRegistryInvoker.victus_register(Potions.REGENERATION, Items.MAGMA_CREAM, RESURGENCE);
         BrewingRecipeRegistryInvoker.victus_register(RESURGENCE, Items.REDSTONE, LONG_RESURGENCE);
+        BrewingRecipeRegistryInvoker.victus_register(RESURGENCE, Items.GLOWSTONE, STRONG_RESURGENCE);
     }
 
     static {

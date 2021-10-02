@@ -7,16 +7,16 @@
   ],
   "key": {
     "s": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:experience_bottle"
     },
     "u": {
       "item": "victus:blank_heart_aspect"
     },
     "t": {
-      "item": "minecraft:tnt"
+      "item": "minecraft:lapis_lazuli"
     }
   },
   "result": {
-    "item": "victus:creeper_heart_aspect"
+    "item": "victus:lapis_heart_aspect"
   }
 }

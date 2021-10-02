@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sus",
+    "uau",
+    "sus"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:end_crystal"
+    },
+    "u": {
+      "item": "minecraft:totem_of_undying"
+    },
+    "a": {
+      "item": "victus:blank_heart_aspect"
+    }
+  },
+  "result": {
+    "item": "victus:totem_heart_aspect"
+  }
+}

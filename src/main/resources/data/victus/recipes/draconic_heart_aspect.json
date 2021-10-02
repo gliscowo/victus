@@ -7,16 +7,16 @@
   ],
   "key": {
     "s": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:chorus_fruit"
     },
     "u": {
       "item": "victus:blank_heart_aspect"
     },
     "t": {
-      "item": "minecraft:tnt"
+      "item": "minecraft:dragon_breath"
     }
   },
   "result": {
-    "item": "victus:creeper_heart_aspect"
+    "item": "victus:draconic_heart_aspect"
   }
 }

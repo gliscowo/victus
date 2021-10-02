@@ -1,7 +1,7 @@
 {
   "item.victus.blank_heart_aspect": "Blank Heart Aspect",
   "item.victus.broken_heart": "Broken Heart",
-  "item.victus.void_heart_aspect": "§4Heart Aspect: §dVoid",
+  "item.victus.void_heart_aspect": "§eHeart Aspect: §4Void",
 
   "item.victus.bundle_heart_aspect": "Heart Aspect: §fBundled",
   "item.victus.bundle_heart_aspect.description": "Three hearts, conveniently strapped onto one",
@@ -55,11 +55,17 @@
   "item.minecraft.lingering_potion.effect.long_resurgence": "Lingering Potion of Resurgence",
   "item.minecraft.splash_potion.effect.long_resurgence": "Splash Potion of Resurgence",
   "item.minecraft.tipped_arrow.effect.long_resurgence": "Arrow of the Resurgence",
+  "item.minecraft.potion.effect.strong_resurgence": "Potion of Resurgence",
+  "item.minecraft.lingering_potion.effect.strong_resurgence": "Lingering Potion of Resurgence",
+  "item.minecraft.splash_potion.effect.strong_resurgence": "Splash Potion of Resurgence",
+  "item.minecraft.tipped_arrow.effect.strong_resurgence": "Arrow of the Resurgence",
 
   "text.victus.recharge_duration": "§7Recharge Duration: %1$.1fs",
   "itemGroup.victus.victus": "Victus",
   "itemGroup.victus.victus.button.discord": "Discord",
   "itemGroup.victus.victus.button.github": "GitHub",
+  "itemGroup.victus.victus.button.curseforge": "CurseForge",
+  "itemGroup.victus.victus.button.modrinth": "Modrinth",
   "itemGroup.victus.victus.button.remove_first_heart": "Remove First Heart",
 
   "death.attack.suicide": "%1$s aw man"

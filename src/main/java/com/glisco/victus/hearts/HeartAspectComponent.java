@@ -62,7 +62,7 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
     }
 
     public void tick() {
-        final int rechargeRate = provider.hasStatusEffect(VictusStatusEffects.RESURGENCE) ? 2 : 1;
+        final int rechargeRate = provider.hasStatusEffect(VictusStatusEffects.RESURGENCE) ? 2 + provider.getStatusEffect(VictusStatusEffects.RESURGENCE).getAmplifier() : 1;
 
         for (int i = 0; i < effectiveSize(); i++) {
             HeartAspect aspect = this.aspects.get(i);

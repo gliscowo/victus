@@ -15,6 +15,8 @@ public class VictusItemGroup extends OwoItemGroup {
 
     @Override
     protected void setup() {
+        this.addButton(ItemGroupButton.curseforge("https://www.curseforge.com/minecraft/mc-mods/victus"));
+        this.addButton(ItemGroupButton.modrinth("https://modrinth.com/mod/victus"));
         this.addButton(ItemGroupButton.discord("https://discord.gg/xrwHKktV2d"));
         this.addButton(ItemGroupButton.github("https://github.com/glisco03/victus"));
 

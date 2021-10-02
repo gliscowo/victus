@@ -1,22 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "tst",
+    "sss",
     "sus",
-    "tst"
+    "sss"
   ],
   "key": {
     "s": {
-      "item": "minecraft:gunpowder"
+      "item": "minecraft:iron_block"
     },
     "u": {
       "item": "victus:blank_heart_aspect"
-    },
-    "t": {
-      "item": "minecraft:tnt"
     }
   },
   "result": {
-    "item": "victus:creeper_heart_aspect"
+    "item": "victus:iron_heart_aspect"
   }
 }
