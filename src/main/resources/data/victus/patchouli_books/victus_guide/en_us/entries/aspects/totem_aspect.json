@@ -1,0 +1,11 @@
+{
+  "name": "Totem",
+  "icon": "victus:totem_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "haha funni aspect text"
+    }
+  ]
+}

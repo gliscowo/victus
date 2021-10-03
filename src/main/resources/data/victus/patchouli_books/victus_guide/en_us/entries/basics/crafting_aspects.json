@@ -1,0 +1,11 @@
+{
+  "name": "Crafting Aspects",
+  "icon": "minecraft:crafting_table",
+  "category": "victus:basics",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "All aspects require a $(item)Blank Heart Aspect$() as their basic ingredient. To obtain one of these, brew up or find a $(item)Potion of the Bleeding Heart$() and splash it on a $(thing)hostile mob$(), then kill it while it's affected by Heartbleed. All aspects have the way they're crafted outlined in their respective entry."
+    }
+  ]
+}
