@@ -6,11 +6,13 @@
   "mixins": [
     "AreaEffectCloudEntityMixin",
     "BrewingRecipeRegistryInvoker",
+    "EvokerEntityMixin",
     "ExperienceOrbEntityMixin",
     "GoalSelectorAccessor",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PotionItemMixin",
+    "SpellcastingIllagerEntityAccessor",
     "VexEntityMixin"
   ],
   "client": [
