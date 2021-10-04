@@ -1,0 +1,16 @@
+{
+  "name": "Diamond",
+  "icon": "victus:diamond_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "It should be a familiar fact at this point that $(thing)Diamond$() is one of the hardest materials known to man. Thus, the $(item)Diamond Heart Aspect$() strengthens your skin for an effective $(thing)4 points of armor$() while active."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:diamond_heart_aspect",
+      "text": "$(o)$(#999999)it's a ten$()"
+    }
+  ]
+}

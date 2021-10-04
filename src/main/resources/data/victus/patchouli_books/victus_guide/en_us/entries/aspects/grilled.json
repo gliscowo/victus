@@ -1,0 +1,16 @@
+{
+  "name": "Grilled",
+  "icon": "victus:grilled_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(item)Grilled Heart Aspect$() is the perfect aspect for the perpetually hungry. When broken, it will quite violently stuff a piece of finely grilled meat into your mouth. As you are probably aware, this will also saturate and thereby heal you by a few hearts unless you're $(o)really$() hungry."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:grilled_heart_aspect",
+      "text": "$(o)$(#999999)steaks are so tastypilled. i was hungrycore before but now im satiated gang fr fr$()"
+    }
+  ]
+}

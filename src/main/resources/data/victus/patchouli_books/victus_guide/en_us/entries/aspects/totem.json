@@ -1,0 +1,16 @@
+{
+  "name": "Totem",
+  "icon": "victus:totem_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(item)Totem Aspect$() is one of the most powerful aspects you can create. When triggered, it first checks your inventory for any $(item)Totems of Undying$(). Should it find one, it will consume it, restore $(thing)15 HP$() and go on cooldown for 10 seconds. If you don't have any totems, only $(thing)5 HP$() will be restored and the aspect will have a 2.5 minute cooldown."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:totem_heart_aspect",
+      "text": "In both of these cases, should the damage have been lethal, the health restored by the $(thing)Totem Aspect$() will $(thing)save you$()."
+    }
+  ]
+}

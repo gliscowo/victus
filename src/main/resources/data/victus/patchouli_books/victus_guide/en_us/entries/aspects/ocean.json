@@ -1,0 +1,16 @@
+{
+  "name": "Ocean",
+  "icon": "victus:ocean_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(thing)Conduit$() is unquestionably an indispensable companion for any kind of work carried out underwater. Too bad it's bound to a one location. The $(item)Ocean Heart Aspect$() seeks to solve this problem by granting access to $(thing)Conduit Power$() while it is active."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:ocean_heart_aspect",
+      "text": "In the name of the almighty $(o)balancing$() however, it introduces a new restriction: it only works while both active and sensing your health below $(thing)75%$() of it's maximum."
+    }
+  ]
+}

@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "While designing your aspect setup, it is important to keep in mind that a recharging aspect will $(l)completely$() block all the ones after it from recharging, so you probably shouldn't stuff a really slow one far down your health bar.$(p)The recharge duration of each aspect in show in its $(thing)tooltip$().$(p)If you feel your aspects recharge too slowly, a $(thing)Potion of Resurgence$() may be of interest."
+      "text": "While designing your aspect setup, it is important to keep in mind that a recharging aspect will $(l)completely$() block all the ones after it from recharging, so you probably shouldn't stuff a really slow one far down your health bar.$(p)The recharge duration of each aspect is show in its $(thing)tooltip$().$(p)If you feel your aspects recharge too slowly, a $(thing)Potion of Resurgence$() may be of interest."
     }
   ]
 }
