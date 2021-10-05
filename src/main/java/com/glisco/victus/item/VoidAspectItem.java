@@ -2,15 +2,14 @@ package com.glisco.victus.item;
 
 import com.glisco.victus.Victus;
 import com.glisco.victus.network.VictusParticleEvents;
-import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 
@@ -24,6 +23,11 @@ public class VoidAspectItem extends EdibleItem {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (Victus.ASPECTS.get(user).empty()) return TypedActionResult.pass(user.getStackInHand(hand));
         return super.use(world, user, hand);
+    }
+
+    @Override
+    public Text getName(ItemStack stack) {
+        return VictusItems.coloredTranslationWithPrefix(getTranslationKey(stack), 0xff2d2d);
     }
 
     @Override

@@ -3,6 +3,10 @@ package com.glisco.victus.item;
 import com.glisco.owo.registration.reflect.ItemRegistryContainer;
 import com.glisco.victus.hearts.content.*;
 import net.minecraft.item.Item;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
+import net.minecraft.text.TextColor;
+import net.minecraft.text.TranslatableText;
 
 public class VictusItems implements ItemRegistryContainer {
 
@@ -29,4 +33,9 @@ public class VictusItems implements ItemRegistryContainer {
     public static final Item BROKEN_HEART = new BrokenHeartItem();
     public static final Item BLANK_HEART_ASPECT = new BlankAspectItem();
 
+    public static final Item VICTUS_JOURNAL = new VictusJournalItem();
+
+    public static MutableText coloredTranslationWithPrefix(String key, int color) {
+        return new TranslatableText("victus.aspect_item_prefix").append(new TranslatableText(key).setStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))));
+    }
 }

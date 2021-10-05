@@ -9,13 +9,15 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Rarity;
+import net.minecraft.util.Language;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -29,7 +31,7 @@ public class HeartAspectItem extends EdibleItem {
     private final HeartAspect.Type aspectType;
 
     public HeartAspectItem(HeartAspect.Type aspectType) {
-        super(new Settings().group(Victus.VICTUS_GROUP).food(new FoodComponent.Builder().alwaysEdible().hunger(4).saturationModifier(.5f).build()).rarity(Rarity.UNCOMMON).maxCount(1));
+        super(new Settings().group(Victus.VICTUS_GROUP).food(new FoodComponent.Builder().alwaysEdible().hunger(4).saturationModifier(.5f).build()).maxCount(1));
         this.aspectType = aspectType;
 
         HeartAspectItem.HEART_ASPECT_ITEMS.put(aspectType, this);
@@ -55,8 +57,21 @@ public class HeartAspectItem extends EdibleItem {
     }
 
     @Override
+    public Text getName(ItemStack stack) {
+        return VictusItems.coloredTranslationWithPrefix(getTranslationKey(stack), aspectType.color());
+    }
+
+    @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(new TranslatableText(this.getTranslationKey(stack) + ".description").formatted(Formatting.DARK_GRAY));
+        String desc = Language.getInstance().get(this.getTranslationKey(stack) + ".description");
+        if (desc.length() > 30) {
+            int spaceIndex = StringUtils.ordinalIndexOf(desc, " ", StringUtils.countMatches(desc, " ") / 2 + 1);
+            tooltip.add(new LiteralText(desc.substring(0, spaceIndex)).formatted(Formatting.DARK_GRAY));
+            tooltip.add(new LiteralText(desc.substring(spaceIndex + 1)).formatted(Formatting.DARK_GRAY));
+        } else {
+            tooltip.add(new TranslatableText(this.getTranslationKey(stack) + ".description").formatted(Formatting.DARK_GRAY));
+        }
+
         tooltip.add(Text.of(""));
         tooltip.add(new TranslatableText("text.victus.recharge_duration", aspectType.standardRechargeDuration() / 20f).formatted(Formatting.BLUE));
     }

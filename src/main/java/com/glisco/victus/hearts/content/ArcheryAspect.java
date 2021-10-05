@@ -13,7 +13,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class ArcheryAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("archery"), 14, 40, ArcheryAspect::new);
+    public static final Type TYPE = new Type(Victus.id("archery"), 14, 40, 0x71413B, ArcheryAspect::new);
 
     public ArcheryAspect(PlayerEntity player) {
         super(player, TYPE);

@@ -201,31 +201,26 @@ public class HeartAspect implements ItemConvertible {
         return HeartAspectItem.getItem(type);
     }
 
-    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, Predicate<PlayerEntity> updateCondition,
+    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, int color, Predicate<PlayerEntity> updateCondition,
                                     Function<PlayerEntity, HeartAspect> factory) {
 
         /**
          * @param id                       The registry ID of this type
          * @param textureIndex             The index into the atlas texture where this aspect's texture is located
          * @param standardRechargeDuration The default recharge duration of this aspect type, can be overridden dynamically
+         * @param color                    The name color of the aspect item
          * @param updateCondition          The conditions under which to call the {@link HeartAspect#update()} function,
          * @param factory                  The aspect factory
          * @see HeartAspect#belowHealth(float)
          * @see HeartAspect#belowHealthPercentage(float)
          */
-        public Type(Identifier id, int textureIndex, int standardRechargeDuration, Predicate<PlayerEntity> updateCondition, Function<PlayerEntity, HeartAspect> factory) {
-            this.id = id;
-            this.textureIndex = textureIndex;
-            this.standardRechargeDuration = standardRechargeDuration;
-            this.updateCondition = updateCondition;
-            this.factory = factory;
-        }
+        public Type {}
 
         /**
          * Convenience constructor that does not take an update condition and uses {@link HeartAspect#NEVER_UPDATE} as the default
          */
-        public Type(Identifier id, int textureIndex, int standardRechargeDuration, Function<PlayerEntity, HeartAspect> factory) {
-            this(id, textureIndex, standardRechargeDuration, NEVER_UPDATE, factory);
+        public Type(Identifier id, int textureIndex, int standardRechargeDuration, int color, Function<PlayerEntity, HeartAspect> factory) {
+            this(id, textureIndex, standardRechargeDuration, color, NEVER_UPDATE, factory);
         }
 
     }

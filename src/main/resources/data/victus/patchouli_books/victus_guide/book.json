@@ -1,7 +1,8 @@
 {
   "name": "Victus Journal",
-  "landing_text": "Improving lives, one heart at a time.",
   "version": 1,
-  "creative_tab": "victus.victus",
-  "show_progress": false
+  "landing_text": "Welcome to Victus!$(br)To begin, check out $(l:victus:basics/introduction)Introduction$().$(p)Should you have problems or discover a bug, feel free to join our $(l:https://discord.com/invite/xrwHKktV2d)Discord$() or report them on $(l:https://github.com/glisco03/victus/issues)GitHub$().$(p)$(o)$(#999999)Improving lives - one heart at a time$()",
+  "show_progress": false,
+  "dont_generate_book": true,
+  "custom_book_item": "victus:victus_journal"
 }

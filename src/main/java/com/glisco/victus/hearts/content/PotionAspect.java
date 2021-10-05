@@ -17,7 +17,7 @@ import java.util.List;
 
 public class PotionAspect extends HeartAspect implements OverlaySpriteProvider {
 
-    public static final Type TYPE = new Type(Victus.id("potion"), 7, 20, PotionAspect::new);
+    public static final Type TYPE = new Type(Victus.id("potion"), 7, 20, 0xFFFFFF, PotionAspect::new);
 
     private Potion potion = Potions.EMPTY;
 

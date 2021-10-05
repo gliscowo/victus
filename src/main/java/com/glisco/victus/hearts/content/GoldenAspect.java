@@ -10,7 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class GoldenAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("golden"), 16, 100, GoldenAspect::new);
+    public static final Type TYPE = new Type(Victus.id("golden"), 16, 100, 0xFFF77B, GoldenAspect::new);
 
     public GoldenAspect(PlayerEntity player) {
         super(player, TYPE);

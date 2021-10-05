@@ -14,7 +14,7 @@ import net.minecraft.util.math.Vec3d;
 
 public class LightAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("light"), 5, 1200, LightAspect::new);
+    public static final Type TYPE = new Type(Victus.id("light"), 5, 1200, 0xFFFFFF ,LightAspect::new);
 
     public LightAspect(PlayerEntity player) {
         super(player, TYPE);

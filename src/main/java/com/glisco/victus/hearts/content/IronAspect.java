@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class IronAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("iron"), 17, 300, IronAspect::new);
+    public static final Type TYPE = new Type(Victus.id("iron"), 17, 300, 0xB5C2F2, IronAspect::new);
     public static final int NO_DROPS_FLAG = 0x1;
 
     public IronAspect(PlayerEntity player) {

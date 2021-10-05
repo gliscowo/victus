@@ -1,0 +1,16 @@
+{
+  "name": "Emerald",
+  "icon": "victus:emerald_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)Emerald$(), a common currency employed in villager trade, might not directly spark any associations when used as an aspect material. For this reason, what the $(item)Emerald Heart Aspect$() does can seem rather random yet fairly useful. Upon being broken it will $(thing)recharge all non-active aspects by 20%$(), for free!"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:emerald_heart_aspect",
+      "text": "$(o)$(#999999)not as expensive as it looks$()"
+    }
+  ]
+}

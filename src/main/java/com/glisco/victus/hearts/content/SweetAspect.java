@@ -9,7 +9,7 @@ import net.minecraft.entity.player.PlayerEntity;
 
 public class SweetAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("sweet"), 13, 50, SweetAspect::new);
+    public static final Type TYPE = new Type(Victus.id("sweet"), 13, 50, 0xB5C2F2, SweetAspect::new);
 
     public SweetAspect(PlayerEntity player) {
         super(player, TYPE);

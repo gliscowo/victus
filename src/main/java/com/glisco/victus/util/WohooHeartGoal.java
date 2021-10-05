@@ -36,7 +36,7 @@ public class WohooHeartGoal extends Goal {
         } else if (evoker.age < this.startTime) {
             return false;
         } else {
-            List<ItemEntity> list = evoker.world.getEntitiesByClass(ItemEntity.class, this.evoker.getBoundingBox().expand(16, 4, 16), entity -> entity.getStack().getItem() == VictusItems.BLANK_HEART_ASPECT);
+            List<ItemEntity> list = evoker.world.getEntitiesByClass(ItemEntity.class, this.evoker.getBoundingBox().expand(16, 4, 16), entity -> entity.getStack().getCount() == 1 && entity.getStack().getItem() == VictusItems.BLANK_HEART_ASPECT);
             if (list.isEmpty()) {
                 return false;
             } else {
@@ -48,7 +48,7 @@ public class WohooHeartGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-        return target != null && target.isAlive() && this.target.getStack().getItem() == VictusItems.BLANK_HEART_ASPECT;
+        return target != null && target.isAlive() && this.target.getStack().getCount() == 1 && this.target.getStack().getItem() == VictusItems.BLANK_HEART_ASPECT;
     }
 
     @Override
