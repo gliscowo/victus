@@ -25,6 +25,6 @@ public class VictusItemGroup extends OwoItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(VictusItems.TOTEM_HEART_ASPECT);
+        return new ItemStack(VictusItems.VOID_HEART_ASPECT);
     }
 }

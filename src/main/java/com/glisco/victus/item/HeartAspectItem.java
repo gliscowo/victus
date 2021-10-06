@@ -64,7 +64,7 @@ public class HeartAspectItem extends EdibleItem {
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         String desc = Language.getInstance().get(this.getTranslationKey(stack) + ".description");
-        if (desc.length() > 30) {
+        if (desc.length() > 30 && desc.contains(" ")) {
             int spaceIndex = StringUtils.ordinalIndexOf(desc, " ", StringUtils.countMatches(desc, " ") / 2 + 1);
             tooltip.add(new LiteralText(desc.substring(0, spaceIndex)).formatted(Formatting.DARK_GRAY));
             tooltip.add(new LiteralText(desc.substring(spaceIndex + 1)).formatted(Formatting.DARK_GRAY));

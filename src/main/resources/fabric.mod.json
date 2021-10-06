@@ -3,9 +3,21 @@
   "id": "victus",
   "version": "${version}",
   "name": "Victus",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "Improving lives - one heart at a time",
+  "authors": [
+    "glisco"
+  ],
+  "contributors": [
+    "Noaaan",
+    "naschhorn",
+    "pvpTurtle",
+    "Pois1x"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/victus",
+    "sources": "https://github.com/glisco03/victus",
+    "issues": "https://github.com/glisco03/victus/issues"
+  },
   "license": "MIT",
   "icon": "assets/victus/icon.png",
   "accessWidener": "victus.accesswidener",
@@ -36,6 +48,11 @@
     "cardinal-components": [
       "victus:aspects",
       "victus:flags"
-    ]
+    ],
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/xrwHKktV2d"
+      }
+    }
   }
 }
