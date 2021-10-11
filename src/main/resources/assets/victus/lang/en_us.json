@@ -63,6 +63,7 @@
   "item.minecraft.tipped_arrow.effect.strong_resurgence": "Arrow of the Resurgence",
 
   "text.victus.recharge_duration": "§7Recharge Duration: %1$.1fs",
+  "effect.victus.true_damage": "That's a lot o' damage",
   "itemGroup.victus.victus": "Victus",
   "itemGroup.victus.victus.button.discord": "Discord",
   "itemGroup.victus.victus.button.github": "GitHub",

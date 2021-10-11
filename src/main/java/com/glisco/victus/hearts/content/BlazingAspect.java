@@ -23,9 +23,7 @@ public class BlazingAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        ServerParticles.issueEvent((ServerWorld) player.world, player.getBlockPos(),
-                VictusParticleEvents.BLAZING_FLAMES,
-                ServerParticles.writeNbt(VectorSerializer.store(player.getPos(), new NbtCompound(), "PlayerPos")));
+        ServerParticles.issueEvent((ServerWorld) player.world, player.getPos(), VictusParticleEvents.BLAZING_FLAMES);
 
         var entities = player.world.getEntitiesByClass(LivingEntity.class, new Box(player.getBlockPos()).expand(4), (p) -> p != player && !(p instanceof TameableEntity tameable && tameable.isOwner(player)));
 
