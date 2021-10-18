@@ -4,6 +4,8 @@ import com.glisco.owo.ops.WorldOps;
 import com.glisco.owo.particles.ClientParticles;
 import com.glisco.owo.particles.ServerParticles;
 import com.glisco.victus.Victus;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -20,34 +22,38 @@ public class VictusParticleEvents {
     public static final Identifier HEART_PARTICLES = Victus.id("void_heart_particles");
     public static final Identifier CONVERT_ASPECT = Victus.id("convert_aspect");
 
-    public static void registerClientListeners() {
-        ServerParticles.registerClientSideHandler(BLAZING_FLAMES, (client, pos, data) -> {
-            client.execute(() -> {
-                ClientParticles.setParticleCount(50);
-                ClientParticles.randomizeVelocity(.15);
-                ClientParticles.spawn(ParticleTypes.FLAME, client.world, pos, 3);
+    @Environment(EnvType.CLIENT)
+    public static class Client {
 
-                WorldOps.playSound(client.world, new BlockPos(pos), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS);
+        public static void registerClientListeners() {
+            ServerParticles.registerClientSideHandler(BLAZING_FLAMES, (client, pos, data) -> {
+                client.execute(() -> {
+                    ClientParticles.setParticleCount(50);
+                    ClientParticles.randomizeVelocity(.15);
+                    ClientParticles.spawn(ParticleTypes.FLAME, client.world, pos, 3);
+
+                    WorldOps.playSound(client.world, new BlockPos(pos), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS);
+                });
             });
-        });
 
-        ServerParticles.registerClientSideHandler(HEART_PARTICLES, (client, pos, data) -> {
-            var broken = data.readBoolean();
-            client.execute(() -> {
-                ClientParticles.setVelocity(new Vec3d(0, .1, 0));
-                ClientParticles.setParticleCount(20);
-                ClientParticles.spawn(broken ? ParticleTypes.ANGRY_VILLAGER : ParticleTypes.HEART, client.world, pos.add(0, 1, 0), 1.5);
+            ServerParticles.registerClientSideHandler(HEART_PARTICLES, (client, pos, data) -> {
+                var broken = data.readBoolean();
+                client.execute(() -> {
+                    ClientParticles.setVelocity(new Vec3d(0, .1, 0));
+                    ClientParticles.setParticleCount(20);
+                    ClientParticles.spawn(broken ? ParticleTypes.ANGRY_VILLAGER : ParticleTypes.HEART, client.world, pos.add(0, 1, 0), 1.5);
 
-                WorldOps.playSound(client.world, new BlockPos(pos), broken ? SoundEvents.ENTITY_BLAZE_HURT : SoundEvents.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 0);
+                    WorldOps.playSound(client.world, new BlockPos(pos), broken ? SoundEvents.ENTITY_BLAZE_HURT : SoundEvents.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 0);
+                });
             });
-        });
 
-        ServerParticles.registerClientSideHandler(CONVERT_ASPECT, (client, pos, data) -> {
-            client.execute(() -> {
-                ClientParticles.setParticleCount(20);
-                ClientParticles.spawn(ParticleTypes.POOF, client.world, pos, .35);
+            ServerParticles.registerClientSideHandler(CONVERT_ASPECT, (client, pos, data) -> {
+                client.execute(() -> {
+                    ClientParticles.setParticleCount(20);
+                    ClientParticles.spawn(ParticleTypes.POOF, client.world, pos, .35);
+                });
             });
-        });
+        }
     }
 
     public static void dispatchHeartParticles(ServerWorld world, ServerPlayerEntity player, boolean broken) {
