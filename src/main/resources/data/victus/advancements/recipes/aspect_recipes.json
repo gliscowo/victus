@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "victus:archery_heart_aspect",
+      "victus:blazing_heart_aspect",
+      "victus:bundle_heart_aspect",
+      "victus:creeper_heart_aspect",
+      "victus:diamond_heart_aspect",
+      "victus:draconic_heart_aspect",
+      "victus:emerald_heart_aspect",
+      "victus:evoking_heart_aspect",
+      "victus:golden_heart_aspect",
+      "victus:grilled_heart_aspect",
+      "victus:icy_heart_aspect",
+      "victus:iron_heart_aspect",
+      "victus:lapis_heart_aspect",
+      "victus:light_heart_aspect",
+      "victus:ocean_heart_aspect",
+      "victus:potion_heart_aspect",
+      "victus:sweet_heart_aspect",
+      "victus:totem_heart_aspect"
+    ]
+  },
+  "criteria": {
+    "has_journal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "victus:victus_journal"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_journal"
+    ]
+  ]
+}
