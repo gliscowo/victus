@@ -39,9 +39,9 @@
   "depends": {
     "fabricloader": ">=0.11.6",
     "fabric": "*",
-    "minecraft": "1.17.1",
-    "cardinal-components-entity": ">=3.0.0",
-    "owo": ">=0.3.0",
+    "minecraft": ">=1.16.2",
+    "cardinal-components-entity": "*",
+    "owo": ">=0.1.0",
     "patchouli": "*"
   },
   "custom": {

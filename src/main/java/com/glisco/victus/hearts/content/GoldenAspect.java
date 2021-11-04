@@ -18,7 +18,7 @@ public class GoldenAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        final var aspects = Victus.ASPECTS.get(player);
+        final HeartAspectComponent aspects = Victus.ASPECTS.get(player);
         int index = findIndex(aspects);
 
         float percentage = 1f - ((index + 0f) / (player.getMaxHealth() / 2));

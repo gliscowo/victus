@@ -30,7 +30,7 @@ public class VictusPackets {
     }
 
     public static void sendAspectBreak(ServerPlayerEntity player, int index, boolean callHandler) {
-        final var buf = PacketByteBufs.create();
+        final PacketByteBuf buf = PacketByteBufs.create();
         buf.writeVarInt(index);
         buf.writeBoolean(callHandler);
         ServerPlayNetworking.send(player, ASPECT_BROKEN, buf);

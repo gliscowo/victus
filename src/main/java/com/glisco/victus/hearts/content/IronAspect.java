@@ -4,6 +4,7 @@ import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 
 public class IronAspect extends HeartAspect {
@@ -17,7 +18,7 @@ public class IronAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        var golem = EntityType.IRON_GOLEM.create(player.world);
+        IronGolemEntity golem = EntityType.IRON_GOLEM.create(player.world);
 
         Victus.ENTITY_FLAGS.get(golem).setFlag(NO_DROPS_FLAG);
         golem.updatePositionAndAngles(player.getX(), player.getY(), player.getZ(), 0, 0);

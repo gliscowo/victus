@@ -1,28 +1,29 @@
 package com.glisco.victus;
 
-import com.glisco.owo.Owo;
-import com.glisco.owo.ops.LootOps;
-import com.glisco.owo.registration.reflect.FieldRegistrationHandler;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
-import com.glisco.victus.item.VictusItemGroup;
 import com.glisco.victus.item.VictusItems;
 import com.glisco.victus.network.VictusPackets;
 import com.glisco.victus.util.EntityFlagComponent;
 import com.glisco.victus.util.VictusPotions;
 import com.glisco.victus.util.VictusStatusEffects;
-import com.mojang.brigadier.arguments.FloatArgumentType;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
-import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
+import nerdhub.cardinal.components.api.util.RespawnCopyStrategy;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
+import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTables;
-import net.minecraft.server.command.CommandManager;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.function.SetNbtLootFunction;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -36,29 +37,31 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
     public static final ComponentKey<HeartAspectComponent> ASPECTS = ComponentRegistry.getOrCreate(id("aspects"), HeartAspectComponent.class);
     public static final ComponentKey<EntityFlagComponent> ENTITY_FLAGS = ComponentRegistry.getOrCreate(id("flags"), EntityFlagComponent.class);
 
-    public static final VictusItemGroup VICTUS_GROUP = new VictusItemGroup();
+    public static final ItemGroup VICTUS_GROUP = FabricItemGroupBuilder.build(id("victus"), () -> new ItemStack(VictusItems.VOID_HEART_ASPECT));
 
     @Override
     public void onInitialize() {
         HeartAspectRegistry.registerDefaults();
-        FieldRegistrationHandler.register(VictusItems.class, MOD_ID, false);
-        FieldRegistrationHandler.register(VictusStatusEffects.class, MOD_ID, false);
-        FieldRegistrationHandler.register(VictusPotions.class, MOD_ID, false);
 
-        VICTUS_GROUP.initialize();
+        VictusItems.register();
+        VictusStatusEffects.register();
+        VictusPotions.register();
 
         VictusPackets.registerServerListeners();
 
-        LootOps.injectItem(VictusItems.BROKEN_HEART, .75f, LootTables.BURIED_TREASURE_CHEST);
-        LootOps.injectItemStack(VictusPotions.createHeartbleedPotion(), .6f, LootTables.SIMPLE_DUNGEON_CHEST, LootTables.ABANDONED_MINESHAFT_CHEST);
-
-        if (!Owo.DEBUG) return;
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, dedicated) ->
-                dispatcher.register(CommandManager.literal("damage").then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {
-                    context.getSource().getPlayer().damage(DamageSource.OUT_OF_WORLD, FloatArgumentType.getFloat(context, "amount"));
-                    return 0;
-                }))));
+        LootTableLoadingCallback.EVENT.register((resourceManager, manager, id, supplier, setter) -> {
+            if (LootTables.BURIED_TREASURE_CHEST.equals(id)) {
+                supplier.withPool(LootPool.builder()
+                        .with(ItemEntry.builder(VictusItems.BROKEN_HEART).conditionally(RandomChanceLootCondition.builder(.75f)))
+                        .build());
+            } else if ( LootTables.SIMPLE_DUNGEON_CHEST.equals(id) || LootTables.ABANDONED_MINESHAFT_CHEST.equals(id)) {
+                supplier.withPool(LootPool.builder()
+                        .with(ItemEntry.builder(Items.SPLASH_POTION)
+                                .apply(SetNbtLootFunction.builder(VictusPotions.HEARTBLEED_NBT))
+                                .conditionally(RandomChanceLootCondition.builder(.6f)))
+                        .build());
+            }
+        });
     }
 
     public static Logger getLogger() {

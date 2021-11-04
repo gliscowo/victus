@@ -8,6 +8,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -26,11 +27,11 @@ public class TotemAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        final var inventory = player.getInventory();
+        final PlayerInventory inventory = player.inventory;
 
         if (inventory.contains(new ItemStack(Items.TOTEM_OF_UNDYING))) {
             player.setHealth(player.getHealth() + 15);
-            inventory.setStack(inventory.remove(stack -> stack.isOf(Items.TOTEM_OF_UNDYING), 1, player.playerScreenHandler.getCraftingInput()), ItemStack.EMPTY);
+            inventory.setStack(inventory.remove(stack -> stack.getItem() == Items.TOTEM_OF_UNDYING, 1, player.playerScreenHandler.method_29281()), ItemStack.EMPTY);
 
             this.hadTotem = true;
         } else {

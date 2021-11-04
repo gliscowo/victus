@@ -1,6 +1,6 @@
 package com.glisco.victus.hearts.content;
 
-import com.glisco.owo.particles.ClientParticles;
+import com.glisco.owo.client.ClientParticles;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.item.VictusItems;
@@ -22,7 +22,7 @@ public class LightAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        if (!source.isFromFalling()) return false;
+        if (!source.name.equals("fall")) return false;
 
         this.player.setHealth(originalHealth);
         player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 2.0F);

@@ -36,11 +36,11 @@ public class HeartAspect implements ItemConvertible {
     }
 
     public final NbtCompound toNbt() {
-        final var containerNbt = new NbtCompound();
+        final NbtCompound containerNbt = new NbtCompound();
         containerNbt.putString("Type", getType().id.toString());
         containerNbt.putInt("Cooldown", cooldown);
 
-        final var dataNbt = new NbtCompound();
+        final NbtCompound dataNbt = new NbtCompound();
         writeCustomData(dataNbt);
         containerNbt.put("CustomData", dataNbt);
 
@@ -201,8 +201,13 @@ public class HeartAspect implements ItemConvertible {
         return HeartAspectItem.getItem(type);
     }
 
-    public static final record Type(Identifier id, int textureIndex, int standardRechargeDuration, int color, Predicate<PlayerEntity> updateCondition,
-                                    Function<PlayerEntity, HeartAspect> factory) {
+    public static final class Type {
+        private final Identifier id;
+        private final int textureIndex;
+        private final int standardRechargeDuration;
+        private final int color;
+        private final Predicate<PlayerEntity> updateCondition;
+        private final Function<PlayerEntity, HeartAspect> factory;
 
         /**
          * @param id                       The registry ID of this type
@@ -214,13 +219,44 @@ public class HeartAspect implements ItemConvertible {
          * @see HeartAspect#belowHealth(float)
          * @see HeartAspect#belowHealthPercentage(float)
          */
-        public Type {}
+        public Type(Identifier id, int textureIndex, int standardRechargeDuration, int color, Predicate<PlayerEntity> updateCondition, Function<PlayerEntity, HeartAspect> factory) {
+            this.id = id;
+            this.textureIndex = textureIndex;
+            this.standardRechargeDuration = standardRechargeDuration;
+            this.color = color;
+            this.updateCondition = updateCondition;
+            this.factory = factory;
+        }
 
         /**
          * Convenience constructor that does not take an update condition and uses {@link HeartAspect#NEVER_UPDATE} as the default
          */
         public Type(Identifier id, int textureIndex, int standardRechargeDuration, int color, Function<PlayerEntity, HeartAspect> factory) {
             this(id, textureIndex, standardRechargeDuration, color, NEVER_UPDATE, factory);
+        }
+
+        public Identifier id() {
+            return id;
+        }
+
+        public int textureIndex() {
+            return textureIndex;
+        }
+
+        public int standardRechargeDuration() {
+            return standardRechargeDuration;
+        }
+
+        public int color() {
+            return color;
+        }
+
+        public Predicate<PlayerEntity> updateCondition() {
+            return updateCondition;
+        }
+
+        public Function<PlayerEntity, HeartAspect> factory() {
+            return factory;
         }
 
     }

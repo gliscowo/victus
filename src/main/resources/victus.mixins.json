@@ -9,6 +9,7 @@
     "EvokerEntityMixin",
     "ExperienceOrbEntityMixin",
     "GoalSelectorAccessor",
+    "ItemEntityMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PotionItemMixin",

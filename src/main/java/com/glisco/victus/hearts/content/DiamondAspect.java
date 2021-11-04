@@ -3,6 +3,7 @@ package com.glisco.victus.hearts.content;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -19,7 +20,7 @@ public class DiamondAspect extends HeartAspect {
     private static final Multimap<EntityAttribute, EntityAttributeModifier> MODIFIER;
 
     static {
-        var builder = ImmutableMultimap.<EntityAttribute, EntityAttributeModifier>builder();
+        ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(EntityAttributes.GENERIC_ARMOR, new EntityAttributeModifier(UUID.fromString("9d8f11d1-2a1c-41d4-a6d8-d4243094f461"), "Diamond Heart Aspect Armor", 4, EntityAttributeModifier.Operation.ADDITION));
         builder.put(EntityAttributes.GENERIC_ARMOR_TOUGHNESS, new EntityAttributeModifier(UUID.fromString("faaee684-c4ba-44c0-86e2-db836c4a3267"), "Diamond Heart Aspect Armor Toughness", 1, EntityAttributeModifier.Operation.ADDITION));
         MODIFIER = builder.build();

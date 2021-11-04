@@ -30,7 +30,7 @@ public abstract class LivingEntityMixin extends Entity {
     @Inject(method = "dropLoot", at = @At("TAIL"))
     private void dropEmptyAspect(DamageSource source, boolean causedByPlayer, CallbackInfo ci) {
         if (!causedByPlayer) return;
-        var entity = (LivingEntity) (Object) this;
+        LivingEntity entity = (LivingEntity) (Object) this;
 
         if (entity instanceof Monster) {
             if (entity.world.random.nextFloat() > 0.5f) return;

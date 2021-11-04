@@ -11,11 +11,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:red_dye",
-              "minecraft:book",
-              "minecraft:crafting_table"
-            ]
+            "item": "minecraft:crafting_table"
           }
         ]
       }

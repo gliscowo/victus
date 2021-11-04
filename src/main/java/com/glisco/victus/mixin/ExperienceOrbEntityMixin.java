@@ -2,6 +2,7 @@ package com.glisco.victus.mixin;
 
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
+import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.content.LapisAspect;
 import com.glisco.victus.network.VictusPackets;
 import net.minecraft.entity.ExperienceOrbEntity;
@@ -12,21 +13,22 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ExperienceOrbEntity.class)
 public abstract class ExperienceOrbEntityMixin {
 
-    @Shadow
-    protected abstract int repairPlayerGears(PlayerEntity player, int amount);
+    @Shadow private int amount;
 
-    @Inject(method = "repairPlayerGears", at = @At("HEAD"), cancellable = true)
-    private void healIfAspectPresent(PlayerEntity player, int amount, CallbackInfoReturnable<Integer> cir) {
-        if (!(player instanceof ServerPlayerEntity serverPlayer)) return;
+    @Inject(method = "onPlayerCollision", at = @At(value = "INVOKE", target = "Lnet/minecraft/enchantment/EnchantmentHelper;chooseEquipmentWith(Lnet/minecraft/enchantment/Enchantment;Lnet/minecraft/entity/LivingEntity;Ljava/util/function/Predicate;)Ljava/util/Map$Entry;"), cancellable = true)
+    private void healIfAspectPresent(PlayerEntity player, CallbackInfo ci) {
+        if (!(player instanceof ServerPlayerEntity)) return;
+        ServerPlayerEntity serverPlayer = (ServerPlayerEntity) player;
+
         if (serverPlayer.getMaxHealth() - serverPlayer.getHealth() < 1f) return;
-        if (amount < 3) return;
+        if (this.amount < 3) return;
 
-        final var aspects = Victus.ASPECTS.get(player);
+        final HeartAspectComponent aspects = Victus.ASPECTS.get(player);
         if (!aspects.hasAspect(LapisAspect.TYPE, HeartAspect.IS_ACTIVE)) return;
 
         final int lapisIndex = aspects.findFirstIndex(LapisAspect.TYPE, HeartAspect.IS_ACTIVE);
@@ -35,8 +37,8 @@ public abstract class ExperienceOrbEntityMixin {
 
         player.heal(1);
 
-        if (amount <= 3) cir.setReturnValue(0);
-        cir.setReturnValue(repairPlayerGears(player, amount - 3));
+        if (amount <= 3) this.amount = 0;
+        else this.amount -= 3;
     }
 
 }

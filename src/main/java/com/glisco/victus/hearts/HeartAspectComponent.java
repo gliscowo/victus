@@ -7,9 +7,7 @@ import dev.onyxstudios.cca.api.v3.component.Component;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.nbt.NbtList;
+import net.minecraft.nbt.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -56,7 +54,7 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
     public HeartAspect removeAspect() {
         if (this.aspects.size() < 1) return null;
 
-        final var removedAspect = this.aspects.remove(this.aspects.size() - 1);
+        final HeartAspect removedAspect = this.aspects.remove(this.aspects.size() - 1);
         Victus.ASPECTS.sync(provider);
         return removedAspect;
     }
@@ -87,7 +85,7 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
      * @param percentage The percentage of each aspect's recharge duration to skip
      */
     public void rechargeAllByPercentage(float percentage) {
-        for (var aspect : aspects) {
+        for (HeartAspect aspect : aspects) {
             aspect.rechargeByPercentage(percentage);
         }
     }
@@ -103,11 +101,11 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
      * @param originalHealth The original health the player had before being damaged
      */
     public void damageAspect(int index, DamageSource source, float damage, float originalHealth) {
-        var aspect = getAspect(index);
+        HeartAspect aspect = getAspect(index);
         if (aspect == null) return;
 
         final int nextIndex = index + 1;
-        final var nextAspect = getAspect(nextIndex);
+        final HeartAspect nextAspect = getAspect(nextIndex);
         if (nextAspect != null) damageAspect(nextIndex, source, damage, originalHealth);
 
         VictusPackets.sendAspectBreak((ServerPlayerEntity) provider, index, aspect.onBroken(source, damage, originalHealth));
@@ -120,14 +118,14 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
 
     public int findFirstIndex(HeartAspect.Type type, Predicate<HeartAspect> filter) {
         for (int i = 0; i < this.effectiveSize(); i++) {
-            final var aspect = this.getAspect(i);
+            final HeartAspect aspect = this.getAspect(i);
             if (aspect.getType() == type && filter.test(aspect)) return i;
         }
         return -1;
     }
 
     public boolean hasAspect(HeartAspect.Type type, Predicate<HeartAspect> filter) {
-        for (var aspect : this.aspects) {
+        for (HeartAspect aspect : this.aspects) {
             if (aspect.getType() != type) continue;
             if (!filter.test(aspect)) continue;
             return true;
@@ -164,18 +162,18 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
     public void readFromNbt(NbtCompound tag) {
         aspects.clear();
 
-        tag.getList("Aspects", NbtElement.COMPOUND_TYPE).forEach(element -> {
+        tag.getList("Aspects", 10).forEach(element -> {
 
-            final var compound = (NbtCompound) element;
-            final var typeString = compound.getString("Type");
+            final NbtCompound compound = (NbtCompound) element;
+            final String typeString = compound.getString("Type");
 
-            final var id = Identifier.tryParse(typeString);
+            final Identifier id = Identifier.tryParse(typeString);
             if (id == null) {
                 Victus.getLogger().warn("Tried to load aspect with invalid id {}. Skipping", typeString);
                 return;
             }
 
-            final var aspect = HeartAspectRegistry.forId(id, provider);
+            final HeartAspect aspect = HeartAspectRegistry.forId(id, provider);
             if (aspect == null) {
                 Victus.getLogger().warn("Failed to load aspect with unknown id {}. Skipping", typeString);
                 return;
@@ -188,7 +186,7 @@ public class HeartAspectComponent implements Component, AutoSyncedComponent {
 
     @Override
     public void writeToNbt(NbtCompound tag) {
-        final var list = new NbtList();
+        final NbtList list = new NbtList();
         aspects.forEach(heart -> list.add(heart.toNbt()));
         tag.put("Aspects", list);
     }

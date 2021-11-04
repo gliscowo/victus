@@ -79,7 +79,7 @@ public class WohooHeartGoal extends Goal {
 
     public class LookAtItemGoal extends Goal {
         public LookAtItemGoal() {
-            this.setControls(EnumSet.of(Goal.Control.MOVE, Goal.Control.LOOK));
+            this.setControls(EnumSet.of(Control.MOVE, Control.LOOK));
         }
 
         @Override

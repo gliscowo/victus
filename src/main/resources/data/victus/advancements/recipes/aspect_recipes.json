@@ -28,9 +28,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "victus:victus_journal"
-            ]
+            "item": "victus:victus_journal"
           }
         ]
       }

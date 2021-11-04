@@ -19,7 +19,7 @@ public abstract class EvokerEntityMixin extends MobEntity {
 
     @Inject(method = "initGoals", at = @At("TAIL"))
     private void injectAspectGoal(CallbackInfo ci) {
-        final var wohooGoal = new WohooHeartGoal((EvokerEntity) (Object) this);
+        final WohooHeartGoal wohooGoal = new WohooHeartGoal((EvokerEntity) (Object) this);
         this.goalSelector.add(2, wohooGoal);
         this.targetSelector.add(1, wohooGoal.lookGoal);
     }

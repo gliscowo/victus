@@ -2,6 +2,7 @@ package com.glisco.victus.item;
 
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
+import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.network.VictusParticleEvents;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,8 +40,8 @@ public class HeartAspectItem extends EdibleItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        final var playerStack = user.getStackInHand(hand);
-        final var aspectComponent = Victus.ASPECTS.get(user);
+        final ItemStack playerStack = user.getStackInHand(hand);
+        final HeartAspectComponent aspectComponent = Victus.ASPECTS.get(user);
 
         if (!aspectComponent.acceptsNew()) return TypedActionResult.pass(playerStack);
 
@@ -50,7 +51,7 @@ public class HeartAspectItem extends EdibleItem {
 
     @Override
     void onEaten(ItemStack stack, World world, PlayerEntity eater) {
-        final var aspectComponent = Victus.ASPECTS.get(eater);
+        final HeartAspectComponent aspectComponent = Victus.ASPECTS.get(eater);
         aspectComponent.addAspect(aspectType.factory().apply(eater));
 
         VictusParticleEvents.dispatchHeartParticles((ServerWorld) world, (ServerPlayerEntity) eater, false);
