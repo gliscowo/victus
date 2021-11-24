@@ -1,7 +1,7 @@
 package com.glisco.victus.hearts.content;
 
-import com.glisco.owo.particles.ServerParticles;
-import com.glisco.owo.util.VectorSerializer;
+import io.wispforest.owo.particles.ServerParticles;
+import io.wispforest.owo.util.VectorSerializer;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.network.VictusParticleEvents;

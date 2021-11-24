@@ -1,6 +1,6 @@
 package com.glisco.victus.hearts.content;
 
-import com.glisco.owo.util.VectorRandomUtils;
+import io.wispforest.owo.util.VectorRandomUtils;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.util.VictusVexExtension;

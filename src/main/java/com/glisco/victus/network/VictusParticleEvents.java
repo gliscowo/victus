@@ -1,8 +1,8 @@
 package com.glisco.victus.network;
 
-import com.glisco.owo.ops.WorldOps;
-import com.glisco.owo.particles.ClientParticles;
-import com.glisco.owo.particles.ServerParticles;
+import io.wispforest.owo.ops.WorldOps;
+import io.wispforest.owo.particles.ClientParticles;
+import io.wispforest.owo.particles.ServerParticles;
 import com.glisco.victus.Victus;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

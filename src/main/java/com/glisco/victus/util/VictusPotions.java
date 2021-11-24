@@ -1,6 +1,6 @@
 package com.glisco.victus.util;
 
-import com.glisco.owo.registration.reflect.AutoRegistryContainer;
+import io.wispforest.owo.registration.reflect.AutoRegistryContainer;
 import com.glisco.victus.mixin.BrewingRecipeRegistryInvoker;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;

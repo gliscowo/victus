@@ -1,6 +1,6 @@
 package com.glisco.victus.hearts.content;
 
-import com.glisco.owo.particles.ClientParticles;
+import io.wispforest.owo.particles.ClientParticles;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.item.VictusItems;

@@ -1,8 +1,8 @@
 package com.glisco.victus.item;
 
-import com.glisco.owo.itemgroup.Icon;
-import com.glisco.owo.itemgroup.OwoItemGroup;
-import com.glisco.owo.itemgroup.gui.ItemGroupButton;
+import io.wispforest.owo.itemgroup.Icon;
+import io.wispforest.owo.itemgroup.OwoItemGroup;
+import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
 import com.glisco.victus.Victus;
 import com.glisco.victus.network.VictusPackets;
 import net.minecraft.item.ItemStack;

@@ -1,6 +1,6 @@
 package com.glisco.victus.item;
 
-import com.glisco.owo.registration.reflect.ItemRegistryContainer;
+import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import com.glisco.victus.hearts.content.*;
 import net.minecraft.item.Item;
 import net.minecraft.text.MutableText;

@@ -105,7 +105,7 @@ public class WohooHeartGoal extends Goal {
         @Override
         public void tick() {
             if (WohooHeartGoal.this.target != null) {
-                WohooHeartGoal.this.evoker.getLookControl().lookAt(WohooHeartGoal.this.target, (float) WohooHeartGoal.this.evoker.getBodyYawSpeed(), (float) WohooHeartGoal.this.evoker.getLookPitchSpeed());
+                WohooHeartGoal.this.evoker.getLookControl().lookAt(WohooHeartGoal.this.target, (float) WohooHeartGoal.this.evoker.getMaxHeadRotation(), (float) WohooHeartGoal.this.evoker.getMaxLookYawChange());
             }
         }
     }

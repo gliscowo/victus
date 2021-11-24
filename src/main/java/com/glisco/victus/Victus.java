@@ -1,8 +1,8 @@
 package com.glisco.victus;
 
-import com.glisco.owo.Owo;
-import com.glisco.owo.ops.LootOps;
-import com.glisco.owo.registration.reflect.FieldRegistrationHandler;
+import io.wispforest.owo.Owo;
+import io.wispforest.owo.ops.LootOps;
+import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
 import com.glisco.victus.item.VictusItemGroup;

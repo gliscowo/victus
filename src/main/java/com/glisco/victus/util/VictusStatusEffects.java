@@ -1,6 +1,6 @@
 package com.glisco.victus.util;
 
-import com.glisco.owo.registration.reflect.AutoRegistryContainer;
+import io.wispforest.owo.registration.reflect.AutoRegistryContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.registry.Registry;
