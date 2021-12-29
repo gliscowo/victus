@@ -9,10 +9,8 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.math.MathHelper;
@@ -35,15 +33,13 @@ public abstract class InGameHudMixin extends DrawableHelper {
     @Shadow
     protected abstract void renderHealthBar(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking);
 
-    @Shadow private int ticks;
     @Shadow private int scaledWidth;
     @Shadow private int scaledHeight;
     @Shadow private int renderHealthValue;
-    @Unique
-    int heartX, heartY, heartIndex;
 
-    @Unique
-    HeartAspectComponent aspectComponent = null;
+    @Unique int heartX, heartY, heartIndex;
+
+    @Unique HeartAspectComponent aspectComponent = null;
 
     @Inject(method = "renderHealthBar", at = @At("HEAD"))
     private void storeAspectComponent(MatrixStack matrices, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo ci) {
