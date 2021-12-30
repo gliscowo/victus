@@ -7,7 +7,7 @@
 
 ## Overview
 
-Victus is a mod about Hearts and how to use them in interesting ways. The core of the mod is about crafting custom hearts, the so-called Heart Aspects, which you can then apply on top of your health bar. When these hearts get broken (e.g taking damage) it spawns a certain effect, depending on the Aspect. The effects range from "feeding" you a steak, to spawning Iron Golems and Vexes, or even outright preventing your death.
+Victus is a mod about Hearts and how to use them in interesting ways. The core of the mod is about crafting custom hearts, the so-called Heart Aspects, which you can then apply on top of your health bar. When these hearts get broken (by taking damage) a certain effect is triggered, depending on the Aspect. These effects range from "feeding" you a steak, to spawning Iron Golems and Vexes, or even outright preventing your death.
 
 ## Credits
  - **Pois1x** for providing the textures
