@@ -28,6 +28,7 @@ public class VictusItems implements ItemRegistryContainer {
     public static final Item IRON_HEART_ASPECT = new HeartAspectItem(IronAspect.TYPE);
     public static final Item LAPIS_HEART_ASPECT = new HeartAspectItem(LapisAspect.TYPE);
     public static final Item SWEET_HEART_ASPECT = new HeartAspectItem(SweetAspect.TYPE);
+    public static final Item CHEESE_HEART_ASPECT = new HeartAspectItem(CheeseAspect.TYPE);
 
     public static final Item VOID_HEART_ASPECT = new VoidAspectItem();
     public static final Item BROKEN_HEART = new BrokenHeartItem();

@@ -1,0 +1,16 @@
+{
+  "name": "Cheese",
+  "icon": "victus:cheese_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "As useful as milking a cow and devouring the resulting bucket may be, it is not usually an option mid-battle. Worry no more however, as the $(item)Cheese Heart Aspect$() comes to the rescue. Itself being a more, um, firm state of milk it can instantly remove $(thing)all negative potion effects$() upon being broken."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:cheese_heart_aspect",
+      "text": "$(o)$(#999999)it's secretly poison$()"
+    }
+  ]
+}

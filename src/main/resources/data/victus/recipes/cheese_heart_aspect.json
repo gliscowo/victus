@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "tst",
+    "sus",
+    "tst"
+  ],
+  "key": {
+    "s": {
+      "item": "minecraft:milk_bucket"
+    },
+    "u": {
+      "item": "victus:blank_heart_aspect"
+    },
+    "t": {
+      "item": "minecraft:brown_mushroom"
+    }
+  },
+  "result": {
+    "item": "victus:cheese_heart_aspect"
+  }
+}

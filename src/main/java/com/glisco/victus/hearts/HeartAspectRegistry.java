@@ -30,6 +30,7 @@ public class HeartAspectRegistry {
         register(IronAspect.TYPE);
         register(LapisAspect.TYPE);
         register(SweetAspect.TYPE);
+        register(CheeseAspect.TYPE);
     }
 
     public static void register(HeartAspect.Type type) {
