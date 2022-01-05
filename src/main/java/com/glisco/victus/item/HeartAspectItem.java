@@ -58,7 +58,7 @@ public class HeartAspectItem extends EdibleItem {
 
     @Override
     public Text getName(ItemStack stack) {
-        if (MinecraftClient.getInstance().world.getRandom().nextInt(100) > 96) {
+        if (MinecraftClient.getInstance().world.getRandom().nextInt(100) > 96 && getTranslationKey(stack).equals("item.victus.cheese_heart_aspect") {
             return VictusItems.coloredTranslationWithPrefix(new TranslatableText("victus.aspect_item_prefix").append(LiteralText("Chyz")), aspectType.color());   
         }
         return VictusItems.coloredTranslationWithPrefix(getTranslationKey(stack), aspectType.color());
