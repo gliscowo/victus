@@ -1,0 +1,11 @@
+{
+  "name": "要素合成",
+  "icon": "minecraft:crafting_table",
+  "category": "victus:basics",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)空白的红心要素$()是所有红心要素的基础合成材料，获得它的方法如下：首先，酿造或找到一瓶$(item)渗心药水$()；然后，将药水喷溅到任意$(thing)敌对生物$()身上；最后，在药水的“心素渗出”效果持续期间将该生物杀死。你可以在每个要素对应的章节中找到对应的合成配方。"
+    }
+  ]
+}
