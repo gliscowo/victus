@@ -1,0 +1,16 @@
+{
+  "name": "轻灵",
+  "icon": "victus:light_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "不幸的是，从高处坠落可能已经成为所有人旅途中的日常了。为了征服那些令你的旅途过早结束的奇峰异石，是时候镶上一个$(item)红心要素：轻灵$()了。如此一来，即便你又遇到了上述的倒霉情况，只要伤害足以击碎轻灵要素，它就会帮你阻挡摔落伤害。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:light_heart_aspect",
+      "text": "需要留意的是，不论是否成功阻挡了摔落伤害，$(thing)红心要素：轻灵$()都会在破碎后进入长达 60 秒的充能周期。"
+    }
+  ]
+}

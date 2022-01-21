@@ -1,0 +1,16 @@
+{
+  "name": "图腾",
+  "icon": "victus:totem_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)红心要素：图腾$()是你可以创造出的最强力的红心要素之一。在所属红心破碎时，图腾要素会首先检查你的物品栏中是否存在$(item)不死图腾$()。如果存在，则图腾要素会消耗不死图腾并治疗你$(thing) 15 点生命$()，随后进入为期 10 秒的充能周期；如果不存在，则图腾要素仅会治疗你$(thing) 5 点生命$()，随后进入为期 2.5 分钟（150 秒）的充能周期。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:totem_heart_aspect",
+      "text": "在任意情况下，即使你受到的伤害足以致命，$(thing)红心要素：图腾$()给予你的治疗也会$(thing)拯救你$()。"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "冰冻",
+  "icon": "victus:icy_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "有时，生活就像一个滑坡，而$(item)红心要素：冰冻$()亦是如此。在所属红心完好时，它会恰到好处地冰封你的双脚，同时给予你在冰上行走一样的速度提升；不过，冰冻也会带来副作用——比如显著地降低你精确移动的能力。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:icy_heart_aspect",
+      "text": "此外，你还需要留意一件事：在所属红心破碎时，一部分封存的冰霜会溢出，使你的双脚被冻结 10 秒。"
+    }
+  ]
+}

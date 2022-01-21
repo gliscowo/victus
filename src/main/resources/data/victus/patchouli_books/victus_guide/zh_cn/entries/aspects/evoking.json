@@ -1,0 +1,18 @@
+{
+  "name": "唤魔",
+  "icon": "victus:evoking_heart_aspect",
+  "category": "victus:aspects",
+  "extra_recipe_mappings": {
+    "victus:evoking_heart_aspect": 1
+  },
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)红心要素：唤魔$()在红心破碎时会$(thing)生成保护你的恼鬼$()，但这并不是它与众不同的原因。相反，唤魔的特别之处在于它的获取方式——由于唤魔者对其法术的发动方式守口如瓶，想要简单地合成是行不通的。因此，你需要把$(item)空白的红心要素$()交给唤魔者，它们会将其转化为具有唤魔能力的要素。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "当然，考虑到唤魔者往往会敌视旁人，转化的过程也会伴随着风险。不过，远离它们的视线足够长的时间或许会有益于快速的转化。"
+    }
+  ]
+}

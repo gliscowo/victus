@@ -1,0 +1,16 @@
+{
+  "name": "海洋",
+  "icon": "victus:ocean_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "对于任何水下作业来说，$(thing)潮涌核心$()都是无可争辩且不可或缺的好伙伴。可惜的是，它只能在特定的区域发挥作用。$(item)红心要素：海洋$()正是来试图解决这个问题的——它会在所属红心完好时给予你$(thing)潮涌能量$()效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:ocean_heart_aspect",
+      "text": "不过，海洋要素也以$(o)平衡$()的名义带来了一个新的限制：它只会在红心完好且你的生命值低于$(thing) 75% $()时才会生效。"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "捆束",
+  "icon": "victus:bundle_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "一个相当直白的概念是，$(item)红心要素：捆束$()可能依然是你生命条上的必需品。在所属红心破碎时，捆束会展开并充盈 2 颗生命条上的红心，相当于治疗了你$(thing) 4 点生命$()。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:bundle_heart_aspect",
+      "text": "$(o)$(#999999)它就像一个红心三明治一样$()"
+    }
+  ]
+}

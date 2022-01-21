@@ -1,0 +1,16 @@
+{
+  "name": "烈焰",
+  "icon": "victus:blazing_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "把来自下界的灼热烈焰带到主世界其实非常方便，因为这正是$(item)红心要素：烈焰$()的能力。借由对烈焰人内含的力量的利用，它可以将$(thing)你身边的至多 4 个敌人$()点燃数秒。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:blazing_heart_aspect",
+      "text": "$(o)$(#999999)this aspect be burnin' 4 u~$()"
+    }
+  ]
+}

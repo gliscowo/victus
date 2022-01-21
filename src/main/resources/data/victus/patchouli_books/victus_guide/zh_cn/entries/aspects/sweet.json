@@ -1,0 +1,16 @@
+{
+  "name": "甘甜",
+  "icon": "victus:sweet_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "众所周知，糖作为一种物质可以让你快速行走，而这种特性在试图快速逃离某地时是十分实用的。因此，在所属红心破碎时，$(item)红心要素：甘甜$()会给予你$(thing)速度II $()效果$(thing)速度 II $()效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:sweet_heart_aspect",
+      "text": "$(o)$(#999999)短小清甜$()"
+    }
+  ]
+}
