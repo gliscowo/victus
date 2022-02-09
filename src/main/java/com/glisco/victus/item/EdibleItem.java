@@ -14,7 +14,7 @@ public abstract class EdibleItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (!world.isClient) onEaten(stack, world, (PlayerEntity) user);
+        if (!world.isClient && user instanceof PlayerEntity player) onEaten(stack, world, player);
         return super.finishUsing(stack, world, user);
     }
 
