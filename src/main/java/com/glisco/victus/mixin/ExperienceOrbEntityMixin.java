@@ -27,9 +27,9 @@ public abstract class ExperienceOrbEntityMixin {
         if (amount < 3) return;
 
         final var aspects = Victus.ASPECTS.get(player);
-        if (!aspects.hasAspect(LapisAspect.TYPE, HeartAspect.IS_ACTIVE)) return;
-
         final int lapisIndex = aspects.findFirstIndex(LapisAspect.TYPE, HeartAspect.IS_ACTIVE);
+        if (lapisIndex == -1) return;
+
         aspects.getAspect(lapisIndex).onBroken(DamageSource.OUT_OF_WORLD, 0, player.getHealth());
         VictusPackets.sendAspectBreak(serverPlayer, lapisIndex, false);
 
