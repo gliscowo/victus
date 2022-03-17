@@ -1,0 +1,16 @@
+{
+  "name": "箭术",
+  "icon": "victus:archery_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)红心要素：箭术$()是一个只有$(thing) 2 秒$()充能时间的要素，很适合用作群体控制。在所属红心破碎时，箭雨会精准地射向距离你最近的三个敌人；在箭击中目标时，其冲击属性会立刻将目标从你的身边击退。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:archery_heart_aspect",
+      "text": "$(o)$(#999999)it's like ol' betsy, but less rustic$()"
+    }
+  ]
+}

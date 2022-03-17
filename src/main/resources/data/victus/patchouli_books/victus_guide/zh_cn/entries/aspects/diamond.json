@@ -1,0 +1,16 @@
+{
+  "name": "钻石",
+  "icon": "victus:diamond_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "到现在了，$(thing)钻石$()是已知最坚硬的材料之一这件事儿，应该已经人尽皆知了吧？类似地，$(item)红心要素：钻石$()在所属红心完好时会用$(thing) 4 点盔甲值$()来强化你的表皮。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:diamond_heart_aspect",
+      "text": "$(o)$(#999999)我给它满分$()"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "药水",
+  "icon": "victus:potion_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "尽管$(item)红心要素：药水$()的合成方式十分简单，但它还是很与众不同的，因为单纯地把它镶嵌到生命条上其实并没有什么用。要想利用它的潜力，你首先需要饮用一瓶药水——药水不会立刻生效，而是会注入你生命条上的药水要素中。如此一来，只有在所属红心破碎时，药水要素才会消耗它所存储的药水并给予你对应的效果。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:potion_heart_aspect",
+      "text": "$(o)$(#999999)我实在想不出有关这个要素的（冷）笑话了$()"
+    }
+  ]
+}

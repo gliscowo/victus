@@ -1,0 +1,16 @@
+{
+  "name": "铁质",
+  "icon": "victus:iron_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "毋庸置疑，铁傀儡是你可以召唤的最强伙伴之一。然而，使用传统方法召唤铁傀儡或许有些昂贵了。所幸，$(item)红心要素：铁质$()就是为这个问题而生的——在所属红心破碎时，一只铁傀儡会被毫无怨言地召唤出来。尽管如此，仍然有些事需要你留意。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:iron_heart_aspect",
+      "text": "铁质要素所召唤的生物可能并没有理想中的那么忠诚和宽容。它们极其容易在你损失过多红心时被激怒，因而无法从其它敌对败类中分辨出境况恶化的你是敌是友。"
+    }
+  ]
+}

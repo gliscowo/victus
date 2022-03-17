@@ -1,0 +1,16 @@
+{
+  "name": "炙烤",
+  "icon": "victus:grilled_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)红心要素：炙烤$()可以帮你横扫饥饿。在所属红心破碎时，它会简单粗暴地把一块精心烤制的肉排塞到你的嘴里；而你可能也注意到了，这么做会给予你饱和效果，从而治疗你些许红心（除非你$(o)真的$()饿极了）。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:grilled_heart_aspect",
+      "text": "$(o)$(#999999)牛排实在是太好吃了！我刚才明明那么饿，现在却如此地满足$()"
+    }
+  ]
+}

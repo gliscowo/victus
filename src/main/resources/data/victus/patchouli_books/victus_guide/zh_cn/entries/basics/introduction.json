@@ -1,0 +1,22 @@
+{
+  "name": "简介",
+  "icon": "victus:blank_heart_aspect",
+  "category": "victus:basics",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "心匠是一个围绕$(thing)红心要素$()展开的模组——它可以将许多次生能力镶嵌到你的生命条上，且其中的大部分能力都会在对应位置的红心破碎时生效。不过，每个生效的能力都要经过一定时长的$(l:victus:basics/recharging)充能$()才会恢复。"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "你在旅途中积淀的红心要素$(thing)会在死亡时保留$()；你还可以在生命条上镶嵌 10 个以上的红心要素（额外的红心要素会在你失去额外红心时从新到旧依次失效）。$(p)接下来，是时候开启你的心匠之旅了——$(l:victus:basics/crafting_aspects)要素合成$()章节记载了有关获取红心要素的方法，而$(l:victus:basics/aspect_maintenance)要素维护$()章节则会教你如何使用这些红心要素。"
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "victus:textures/gui/patchouli_hearts.png"
+      ],
+      "text": "人们可能会想到的几种不同的要素方案"
+    }
+   ]
+}

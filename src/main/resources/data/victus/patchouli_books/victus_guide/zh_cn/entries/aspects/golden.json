@@ -1,0 +1,16 @@
+{
+  "name": "金质",
+  "icon": "victus:golden_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "在你阅读这段话时，你的思想就已经被迈达斯王点石成金的故事侵蚀了——你也许会期待$(item)红心要素：金质$()会赋予你类似的能力。不过，我很乐意告诉你，你实际上完全想错了。相反，金质要素会在红心破碎时给予你$(item)伤害吸收$()效果；此外，金质要素越接近生命条的左端，效果的等级就越高。"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:golden_heart_aspect",
+      "text": "$(o)$(#999999)说实话，我无法理解这玩意儿怎么会有人吃得下去的$()"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "绿宝石",
+  "icon": "victus:emerald_heart_aspect",
+  "category": "victus:aspects",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(thing)绿宝石$()，一种在村民交易中使用的通用货币，在用作要素的材料时可能无法直接引发你的任何联想。因此，$(item)红心要素：绿宝石$()的效果看起来会有些随意，但这不妨碍它相当实用。在所属红心破碎时，它会$(thing)把所有未完全充能的要素充能 20 %$()，并且不会收你一分钱！"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "victus:emerald_heart_aspect",
+      "text": "$(o)$(#999999)并没有看起来那么贵$()"
+    }
+  ]
+}
