@@ -8,7 +8,6 @@ import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.mob.EvokerEntity;
 import net.minecraft.entity.mob.SpellcastingIllagerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 
 import java.util.EnumSet;
@@ -71,7 +70,7 @@ public class WohooHeartGoal extends Goal {
         this.spellCooldown--;
         if (this.spellCooldown == 0) {
             target.setStack(new ItemStack(VictusItems.EVOKING_HEART_ASPECT));
-            VictusParticleEvents.dispatchPoofParticles((ServerWorld) target.world, target);
+            VictusParticleEvents.CONVERT_ASPECT.spawn(target.world, target.getPos());
 
             evoker.playSound(((SpellcastingIllagerEntityAccessor) evoker).victus_invokeGetCastSpellSound(), 1.0F, 1.0F);
         }

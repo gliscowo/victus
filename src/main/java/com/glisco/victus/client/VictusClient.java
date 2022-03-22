@@ -11,6 +11,5 @@ public class VictusClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         VictusPackets.registerClientListeners();
-        VictusParticleEvents.Client.registerClientListeners();
     }
 }

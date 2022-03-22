@@ -1,13 +1,11 @@
 package com.glisco.victus;
 
-import io.wispforest.owo.Owo;
-import io.wispforest.owo.ops.LootOps;
-import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
 import com.glisco.victus.item.VictusItemGroup;
 import com.glisco.victus.item.VictusItems;
 import com.glisco.victus.network.VictusPackets;
+import com.glisco.victus.network.VictusParticleEvents;
 import com.glisco.victus.util.EntityFlagComponent;
 import com.glisco.victus.util.VictusPotions;
 import com.glisco.victus.util.VictusStatusEffects;
@@ -17,6 +15,9 @@ import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
+import io.wispforest.owo.Owo;
+import io.wispforest.owo.ops.LootOps;
+import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.entity.Entity;
@@ -48,6 +49,7 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
         VICTUS_GROUP.initialize();
 
         VictusPackets.registerServerListeners();
+        VictusParticleEvents.initialize();
 
         LootOps.injectItem(VictusItems.BROKEN_HEART, .75f, LootTables.BURIED_TREASURE_CHEST);
         LootOps.injectItemStack(VictusPotions.createHeartbleedPotion(), .6f, LootTables.SIMPLE_DUNGEON_CHEST, LootTables.ABANDONED_MINESHAFT_CHEST);

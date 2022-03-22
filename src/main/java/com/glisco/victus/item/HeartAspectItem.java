@@ -53,7 +53,7 @@ public class HeartAspectItem extends EdibleItem {
         final var aspectComponent = Victus.ASPECTS.get(eater);
         aspectComponent.addAspect(aspectType.factory().apply(eater));
 
-        VictusParticleEvents.dispatchHeartParticles((ServerWorld) world, (ServerPlayerEntity) eater, false);
+        VictusParticleEvents.HEART_PARTICLES.spawn(world, eater.getPos(), false);
     }
 
     @Override

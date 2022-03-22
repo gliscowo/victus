@@ -6,8 +6,6 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -35,6 +33,6 @@ public class VoidAspectItem extends EdibleItem {
         Victus.ASPECTS.get(eater).removeAspect();
         eater.damage(DamageSource.MAGIC, eater.getHealth() + 1 - (Victus.ASPECTS.get(eater).effectiveSize() + 1) * 2);
 
-        VictusParticleEvents.dispatchHeartParticles((ServerWorld) world, (ServerPlayerEntity) eater, true);
+        VictusParticleEvents.HEART_PARTICLES.spawn(world, eater.getPos(), true);
     }
 }
