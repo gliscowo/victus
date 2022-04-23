@@ -2,6 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.glisco.victus.mixin",
+  "plugin": "com.glisco.victus.mixin.VictusMixinPlugin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "AreaEffectCloudEntityMixin",
@@ -9,6 +10,7 @@
     "EvokerEntityMixin",
     "ExperienceOrbEntityMixin",
     "GoalSelectorAccessor",
+    "HardcoreRevivalManagerMixin",
     "LivingEntityMixin",
     "PlayerEntityMixin",
     "PotionItemMixin",
