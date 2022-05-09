@@ -41,7 +41,7 @@
     "fabric": "*",
     "minecraft": ">=1.18",
     "cardinal-components-entity": ">=4.0.0",
-    "owo": ">=0.6.0",
+    "owo": ">=0.7.0",
     "patchouli": "*"
   },
   "custom": {

@@ -2,6 +2,7 @@ package com.glisco.victus;
 
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.HeartAspectRegistry;
+import com.glisco.victus.item.EdibleItem;
 import com.glisco.victus.item.VictusItemGroup;
 import com.glisco.victus.item.VictusItems;
 import com.glisco.victus.network.VictusPackets;
@@ -18,6 +19,7 @@ import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
 import io.wispforest.owo.Owo;
 import io.wispforest.owo.ops.LootOps;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
+import io.wispforest.owo.util.TagInjector;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 import net.minecraft.entity.Entity;
@@ -25,6 +27,7 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.loot.LootTables;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,6 +48,11 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
         FieldRegistrationHandler.register(VictusItems.class, MOD_ID, false);
         FieldRegistrationHandler.register(VictusStatusEffects.class, MOD_ID, false);
         FieldRegistrationHandler.register(VictusPotions.class, MOD_ID, false);
+
+        FieldRegistrationHandler.process(VictusItems.class, (item, s, field) -> {
+            if (!(item instanceof EdibleItem)) return;
+            TagInjector.inject(Registry.ITEM, new Identifier("origins", "ignore_diet"), item);
+        }, false);
 
         VICTUS_GROUP.initialize();
 
