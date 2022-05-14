@@ -30,7 +30,7 @@ public class TotemAspect extends HeartAspect {
 
         if (inventory.contains(new ItemStack(Items.TOTEM_OF_UNDYING))) {
             player.setHealth(player.getHealth() + 15);
-            inventory.setStack(inventory.remove(stack -> stack.isOf(Items.TOTEM_OF_UNDYING), 1, player.playerScreenHandler.getCraftingInput()), ItemStack.EMPTY);
+            inventory.remove(stack -> stack.isOf(Items.TOTEM_OF_UNDYING), 1, player.playerScreenHandler.getCraftingInput());
 
             this.hadTotem = true;
         } else {
