@@ -1,9 +1,9 @@
 package com.glisco.victus.hearts.content;
 
-import io.wispforest.owo.particles.ClientParticles;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.item.VictusItems;
+import io.wispforest.owo.particles.ClientParticles;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;

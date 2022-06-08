@@ -1,12 +1,12 @@
 package com.glisco.victus.item;
 
-import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import com.glisco.victus.hearts.content.*;
+import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
 import net.minecraft.item.Item;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
+import net.minecraft.text.Text;
 import net.minecraft.text.TextColor;
-import net.minecraft.text.TranslatableText;
 
 public class VictusItems implements ItemRegistryContainer {
 
@@ -37,6 +37,6 @@ public class VictusItems implements ItemRegistryContainer {
     public static final Item VICTUS_JOURNAL = new VictusJournalItem();
 
     public static MutableText coloredTranslationWithPrefix(String key, int color) {
-        return new TranslatableText("victus.aspect_item_prefix").append(new TranslatableText(key).setStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))));
+        return Text.translatable("victus.aspect_item_prefix").append(Text.translatable(key).setStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))));
     }
 }

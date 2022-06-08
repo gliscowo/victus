@@ -48,7 +48,7 @@ public class PotionItemMixin {
             player.getInventory().insertStack(new ItemStack(Items.GLASS_BOTTLE));
         }
 
-        world.emitGameEvent(user, GameEvent.DRINKING_FINISH, user.getCameraBlockPos());
+        user.emitGameEvent(GameEvent.DRINK);
         cir.setReturnValue(stack);
     }
 

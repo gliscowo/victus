@@ -7,11 +7,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Language;
@@ -66,14 +62,14 @@ public class HeartAspectItem extends EdibleItem {
         String desc = Language.getInstance().get(this.getTranslationKey(stack) + ".description");
         if (desc.length() > 30 && desc.contains(" ")) {
             int spaceIndex = StringUtils.ordinalIndexOf(desc, " ", StringUtils.countMatches(desc, " ") / 2 + 1);
-            tooltip.add(new LiteralText(desc.substring(0, spaceIndex)).formatted(Formatting.DARK_GRAY));
-            tooltip.add(new LiteralText(desc.substring(spaceIndex + 1)).formatted(Formatting.DARK_GRAY));
+            tooltip.add(Text.literal(desc.substring(0, spaceIndex)).formatted(Formatting.DARK_GRAY));
+            tooltip.add(Text.literal(desc.substring(spaceIndex + 1)).formatted(Formatting.DARK_GRAY));
         } else {
-            tooltip.add(new TranslatableText(this.getTranslationKey(stack) + ".description").formatted(Formatting.DARK_GRAY));
+            tooltip.add(Text.translatable(this.getTranslationKey(stack) + ".description").formatted(Formatting.DARK_GRAY));
         }
 
         tooltip.add(Text.of(" "));
-        tooltip.add(new TranslatableText("text.victus.recharge_duration", aspectType.standardRechargeDuration() / 20f).formatted(Formatting.BLUE));
+        tooltip.add(Text.translatable("text.victus.recharge_duration", aspectType.standardRechargeDuration() / 20f).formatted(Formatting.BLUE));
     }
 
     public static HeartAspectItem getItem(HeartAspect.Type type) {

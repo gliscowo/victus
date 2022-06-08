@@ -1,9 +1,9 @@
 package com.glisco.victus.hearts.content;
 
-import io.wispforest.owo.util.VectorRandomUtils;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.util.VictusVexExtension;
+import io.wispforest.owo.util.VectorRandomUtils;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.damage.DamageSource;
