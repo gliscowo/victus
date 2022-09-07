@@ -41,7 +41,7 @@
     "fabric": "*",
     "minecraft": ">=1.19",
     "cardinal-components-entity": ">=4.0.0",
-    "owo": ">=0.7.0"
+    "owo": ">=0.8.0"
   },
   "custom": {
     "cardinal-components": [

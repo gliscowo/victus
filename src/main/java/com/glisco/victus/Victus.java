@@ -43,6 +43,7 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
     public static final VictusItemGroup VICTUS_GROUP = new VictusItemGroup();
 
     @Override
+    @SuppressWarnings("UnstableApiUsage")
     public void onInitialize() {
         HeartAspectRegistry.registerDefaults();
         FieldRegistrationHandler.register(VictusItems.class, MOD_ID, false);
