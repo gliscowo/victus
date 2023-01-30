@@ -3,7 +3,8 @@ package com.glisco.victus.util;
 import io.wispforest.owo.registration.reflect.AutoRegistryContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class VictusStatusEffects implements AutoRegistryContainer<StatusEffect> {
 
@@ -13,7 +14,7 @@ public class VictusStatusEffects implements AutoRegistryContainer<StatusEffect> 
 
     @Override
     public Registry<StatusEffect> getRegistry() {
-        return Registry.STATUS_EFFECT;
+        return Registries.STATUS_EFFECT;
     }
 
     @Override

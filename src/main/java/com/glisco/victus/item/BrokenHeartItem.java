@@ -1,6 +1,7 @@
 package com.glisco.victus.item;
 
 import com.glisco.victus.Victus;
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
@@ -10,7 +11,7 @@ import net.minecraft.world.World;
 public class BrokenHeartItem extends EdibleItem {
 
     public BrokenHeartItem() {
-        super(new Settings().group(Victus.VICTUS_GROUP).food(new FoodComponent.Builder().alwaysEdible().build()).maxCount(1));
+        super(new OwoItemSettings().group(Victus.VICTUS_GROUP).food(new FoodComponent.Builder().alwaysEdible().build()).maxCount(1));
     }
 
     @Override

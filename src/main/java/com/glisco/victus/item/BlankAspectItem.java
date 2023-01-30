@@ -1,6 +1,7 @@
 package com.glisco.victus.item;
 
 import com.glisco.victus.Victus;
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -9,7 +10,9 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ItemScatterer;
 
 class BlankAspectItem extends Item {
-    public BlankAspectItem() {super(new Settings().group(Victus.VICTUS_GROUP));}
+    public BlankAspectItem() {
+        super(new OwoItemSettings().group(Victus.VICTUS_GROUP));
+    }
 
     @Override
     public void onItemEntityDestroyed(ItemEntity entity) {

@@ -10,8 +10,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 
 import java.util.List;
 
@@ -52,12 +52,12 @@ public class PotionAspect extends HeartAspect implements OverlaySpriteProvider {
 
     @Override
     protected void readCustomData(NbtCompound nbt) {
-        this.potion = Registry.POTION.get(new Identifier(nbt.getString("Potion")));
+        this.potion = Registries.POTION.get(new Identifier(nbt.getString("Potion")));
     }
 
     @Override
     protected void writeCustomData(NbtCompound nbt) {
-        nbt.putString("Potion", Registry.POTION.getId(this.potion).toString());
+        nbt.putString("Potion", Registries.POTION.getId(this.potion).toString());
     }
 
     @Override

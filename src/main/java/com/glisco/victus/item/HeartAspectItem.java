@@ -3,6 +3,7 @@ package com.glisco.victus.item;
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.network.VictusParticleEvents;
+import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
@@ -27,7 +28,7 @@ public class HeartAspectItem extends EdibleItem {
     private final HeartAspect.Type aspectType;
 
     public HeartAspectItem(HeartAspect.Type aspectType) {
-        super(new Settings().group(Victus.VICTUS_GROUP).food(new FoodComponent.Builder().alwaysEdible().hunger(4).saturationModifier(.5f).build()).maxCount(1));
+        super(new OwoItemSettings().group(Victus.VICTUS_GROUP).food(new FoodComponent.Builder().alwaysEdible().hunger(4).saturationModifier(.5f).build()).maxCount(1));
         this.aspectType = aspectType;
 
         HeartAspectItem.HEART_ASPECT_ITEMS.put(aspectType, this);

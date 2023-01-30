@@ -4,6 +4,7 @@ import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.HeartAspect;
 import com.glisco.victus.hearts.HeartAspectComponent;
 import com.glisco.victus.hearts.OverlaySpriteProvider;
+import com.glisco.victus.mixin.CreativeInventoryScreenAccessor;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -12,7 +13,6 @@ import net.minecraft.client.gui.screen.ingame.CreativeInventoryScreen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -88,8 +88,8 @@ public abstract class InGameHudMixin extends DrawableHelper {
 
     @Inject(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;hasStatusBars()Z"))
     private void renderHeartsInVictusTab(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        if (!(client.currentScreen instanceof CreativeInventoryScreen screen)) return;
-        if (ItemGroup.GROUPS[screen.getSelectedTab()] != Victus.VICTUS_GROUP) return;
+        if (!(client.currentScreen instanceof CreativeInventoryScreen)) return;
+        if (CreativeInventoryScreenAccessor.owo$getSelectedTab() != Victus.VICTUS_GROUP) return;
 
         final var player = client.player;
 

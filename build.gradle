@@ -26,17 +26,13 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    def noFabric = {
-        exclude group: 'net.fabricmc.fabric-api'
-    }
-
-    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}", noFabric
-    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}", noFabric
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-entity:${project.cca_version}"
 
     modImplementation "io.wispforest:owo-lib:${project.owo_version}"
     include "io.wispforest:owo-lib:${project.owo_version}"
 
-    modImplementation "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+    modCompileOnly "vazkii.patchouli:Patchouli:${project.patchouli_version}"
 }
 
 loom {

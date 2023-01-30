@@ -8,7 +8,8 @@ import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 
 public class VictusPotions implements AutoRegistryContainer<Potion> {
 
@@ -33,7 +34,7 @@ public class VictusPotions implements AutoRegistryContainer<Potion> {
 
     @Override
     public Registry<Potion> getRegistry() {
-        return Registry.POTION;
+        return Registries.POTION;
     }
 
     @Override
