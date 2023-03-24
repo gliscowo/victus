@@ -26,7 +26,7 @@ public class BlazingAspect extends HeartAspect {
         for (int i = 0; i < 4; i++) {
             if (entities.size() < 1) return false;
             var entity = entities.remove(player.world.random.nextInt(entities.size()));
-            entity.damage(DamageSource.IN_FIRE, 3);
+            entity.damage(entity.world.getDamageSources().inFire(), 3);
             entity.setOnFireFor(4);
         }
 

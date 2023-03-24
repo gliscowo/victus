@@ -9,12 +9,13 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.Vec3d;
 
 public class LightAspect extends HeartAspect {
 
-    public static final Type TYPE = new Type(Victus.id("light"), 5, 1200, 0xFFFFFF ,LightAspect::new);
+    public static final Type TYPE = new Type(Victus.id("light"), 5, 1200, 0xFFFFFF, LightAspect::new);
 
     public LightAspect(PlayerEntity player) {
         super(player, TYPE);
@@ -22,7 +23,7 @@ public class LightAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        if (!source.isFromFalling()) return false;
+        if (!source.isIn(DamageTypeTags.IS_FALL)) return false;
 
         this.player.setHealth(originalHealth);
         player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 2.0F);

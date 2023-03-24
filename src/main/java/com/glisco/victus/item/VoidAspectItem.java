@@ -3,7 +3,6 @@ package com.glisco.victus.item;
 import com.glisco.victus.Victus;
 import com.glisco.victus.network.VictusParticleEvents;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
@@ -32,7 +31,7 @@ public class VoidAspectItem extends EdibleItem {
     @Override
     void onEaten(ItemStack stack, World world, PlayerEntity eater) {
         Victus.ASPECTS.get(eater).removeAspect();
-        eater.damage(DamageSource.MAGIC, eater.getHealth() + 1 - (Victus.ASPECTS.get(eater).effectiveSize() + 1) * 2);
+        eater.damage(world.getDamageSources().magic(), eater.getHealth() + 1 - (Victus.ASPECTS.get(eater).effectiveSize() + 1) * 2);
 
         VictusParticleEvents.HEART_PARTICLES.spawn(world, eater.getPos(), true);
     }

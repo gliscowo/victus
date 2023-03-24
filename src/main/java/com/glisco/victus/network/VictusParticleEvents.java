@@ -20,7 +20,7 @@ public class VictusParticleEvents {
         ClientParticles.randomizeVelocity(.15);
         ClientParticles.spawn(ParticleTypes.FLAME, world, pos, 3);
 
-        WorldOps.playSound(world, new BlockPos(pos), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS);
+        WorldOps.playSound(world, BlockPos.ofFloored(pos), SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS);
     });
 
     public static final ParticleSystem<Boolean> HEART_PARTICLES = CONTROLLER.register(Boolean.class, (world, pos, broken) -> {
@@ -28,7 +28,7 @@ public class VictusParticleEvents {
         ClientParticles.setParticleCount(20);
         ClientParticles.spawn(broken ? ParticleTypes.ANGRY_VILLAGER : ParticleTypes.HEART, world, pos.add(0, 1, 0), 1.5);
 
-        WorldOps.playSound(world, new BlockPos(pos), broken ? SoundEvents.ENTITY_BLAZE_HURT : SoundEvents.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 0);
+        WorldOps.playSound(world, BlockPos.ofFloored(pos), broken ? SoundEvents.ENTITY_BLAZE_HURT : SoundEvents.BLOCK_BEACON_POWER_SELECT, SoundCategory.PLAYERS, 1, 0);
     });
 
     public static final ParticleSystem<Void> CONVERT_ASPECT = CONTROLLER.register(Void.class, (world, pos, data) -> {

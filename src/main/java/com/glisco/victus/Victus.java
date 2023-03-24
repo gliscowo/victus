@@ -9,13 +9,11 @@ import com.glisco.victus.network.VictusParticleEvents;
 import com.glisco.victus.util.EntityFlagComponent;
 import com.glisco.victus.util.VictusPotions;
 import com.glisco.victus.util.VictusStatusEffects;
-import com.mojang.brigadier.arguments.FloatArgumentType;
 import dev.onyxstudios.cca.api.v3.component.ComponentKey;
 import dev.onyxstudios.cca.api.v3.component.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentFactoryRegistry;
 import dev.onyxstudios.cca.api.v3.entity.EntityComponentInitializer;
 import dev.onyxstudios.cca.api.v3.entity.RespawnCopyStrategy;
-import io.wispforest.owo.Owo;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
@@ -23,12 +21,9 @@ import io.wispforest.owo.ops.LootOps;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
 import io.wispforest.owo.util.TagInjector;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.loot.LootTables;
 import net.minecraft.registry.Registries;
-import net.minecraft.server.command.CommandManager;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -74,14 +69,6 @@ public class Victus implements ModInitializer, EntityComponentInitializer {
 
         LootOps.injectItem(VictusItems.BROKEN_HEART, .75f, LootTables.BURIED_TREASURE_CHEST);
         LootOps.injectItemStack(VictusPotions.createHeartbleedPotion(), .6f, LootTables.SIMPLE_DUNGEON_CHEST, LootTables.ABANDONED_MINESHAFT_CHEST);
-
-        if (!Owo.DEBUG) return;
-
-        CommandRegistrationCallback.EVENT.register((dispatcher, access, environment) ->
-                dispatcher.register(CommandManager.literal("damage").then(CommandManager.argument("amount", FloatArgumentType.floatArg()).executes(context -> {
-                    context.getSource().getPlayer().damage(DamageSource.OUT_OF_WORLD, FloatArgumentType.getFloat(context, "amount"));
-                    return 0;
-                }))));
     }
 
     public static Logger getLogger() {

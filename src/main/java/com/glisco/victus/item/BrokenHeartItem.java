@@ -21,6 +21,6 @@ public class BrokenHeartItem extends EdibleItem {
             eater.dropItem(Victus.ASPECTS.get(eater).removeAspect());
         }
 
-        eater.damage(DamageSource.MAGIC, 15f);
+        eater.damage(world.getDamageSources().magic(), 15f);
     }
 }

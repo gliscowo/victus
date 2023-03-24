@@ -34,7 +34,7 @@ public class EvokingAspect extends HeartAspect {
             Vec3d vexPos = VectorRandomUtils.getRandomOffsetSpecific(player.world, player.getPos().add(0, 2, 0), 2, 1, 2);
             vex.updatePositionAndAngles(vexPos.x, vexPos.y, vexPos.z, 0, 0);
 
-            vex.initialize(((ServerWorldAccess) player.world), player.world.getLocalDifficulty(new BlockPos(vexPos)), SpawnReason.MOB_SUMMONED, null, null);
+            vex.initialize(((ServerWorldAccess) player.world), player.world.getLocalDifficulty(BlockPos.ofFloored(vexPos)), SpawnReason.MOB_SUMMONED, null, null);
             vex.setLifeTicks(250);
 
             player.world.spawnEntity(vex);

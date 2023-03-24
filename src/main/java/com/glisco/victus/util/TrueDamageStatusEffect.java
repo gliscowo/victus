@@ -13,7 +13,7 @@ public class TrueDamageStatusEffect extends StatusEffect {
 
     @Override
     public void applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.damage(DamageSource.MAGIC, 6 << amplifier);
+        entity.damage(entity.world.getDamageSources().magic(), 6 << amplifier);
     }
 
     @Override
