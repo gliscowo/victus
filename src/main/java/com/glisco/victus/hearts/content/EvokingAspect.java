@@ -28,20 +28,20 @@ public class EvokingAspect extends HeartAspect {
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
 
         for (int i = 0; i < 3; i++) {
-            var vex = new VexEntity(EntityType.VEX, player.world);
+            var vex = new VexEntity(EntityType.VEX, player.getWorld());
             ((VictusVexExtension) vex).replaceTargetGoal(player);
 
-            Vec3d vexPos = VectorRandomUtils.getRandomOffsetSpecific(player.world, player.getPos().add(0, 2, 0), 2, 1, 2);
+            Vec3d vexPos = VectorRandomUtils.getRandomOffsetSpecific(player.getWorld(), player.getPos().add(0, 2, 0), 2, 1, 2);
             vex.updatePositionAndAngles(vexPos.x, vexPos.y, vexPos.z, 0, 0);
 
-            vex.initialize(((ServerWorldAccess) player.world), player.world.getLocalDifficulty(BlockPos.ofFloored(vexPos)), SpawnReason.MOB_SUMMONED, null, null);
+            vex.initialize(((ServerWorldAccess) player.getWorld()), player.getWorld().getLocalDifficulty(BlockPos.ofFloored(vexPos)), SpawnReason.MOB_SUMMONED, null, null);
             vex.setLifeTicks(250);
 
-            player.world.spawnEntity(vex);
+            player.getWorld().spawnEntity(vex);
             vex.playSpawnEffects();
         }
 
-        player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1, 1);
+        player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENTITY_EVOKER_CAST_SPELL, SoundCategory.PLAYERS, 1, 1);
 
         return false;
     }

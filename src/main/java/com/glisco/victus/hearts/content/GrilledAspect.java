@@ -17,7 +17,7 @@ public class GrilledAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        player.eatFood(player.world, new ItemStack(Items.COOKED_MUTTON));
+        player.eatFood(player.getWorld(), new ItemStack(Items.COOKED_MUTTON));
         return false;
     }
 

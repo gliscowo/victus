@@ -19,14 +19,14 @@ public class BlazingAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        VictusParticleEvents.BLAZING_FLAMES.spawn(player.world, player.getPos());
+        VictusParticleEvents.BLAZING_FLAMES.spawn(player.getWorld(), player.getPos());
 
-        var entities = player.world.getEntitiesByClass(LivingEntity.class, new Box(player.getBlockPos()).expand(4), (p) -> p != player && !(p instanceof TameableEntity tameable && tameable.isOwner(player)));
+        var entities = player.getWorld().getEntitiesByClass(LivingEntity.class, new Box(player.getBlockPos()).expand(4), (p) -> p != player && !(p instanceof TameableEntity tameable && tameable.isOwner(player)));
 
         for (int i = 0; i < 4; i++) {
             if (entities.size() < 1) return false;
-            var entity = entities.remove(player.world.random.nextInt(entities.size()));
-            entity.damage(entity.world.getDamageSources().inFire(), 3);
+            var entity = entities.remove(player.getWorld().random.nextInt(entities.size()));
+            entity.damage(entity.getWorld().getDamageSources().inFire(), 3);
             entity.setOnFireFor(4);
         }
 

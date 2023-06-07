@@ -33,7 +33,7 @@ public abstract class LivingEntityMixin extends Entity {
         var entity = (LivingEntity) (Object) this;
 
         if (entity instanceof Monster) {
-            if (entity.world.random.nextFloat() > 0.5f) return;
+            if (entity.getWorld().random.nextFloat() > 0.5f) return;
             if (!entity.hasStatusEffect(VictusStatusEffects.HEARTBLEED)) return;
 
             entity.dropItem(VictusItems.BLANK_HEART_ASPECT);
@@ -48,7 +48,7 @@ public abstract class LivingEntityMixin extends Entity {
     }
 
     @SuppressWarnings("ConstantConditions")
-    @ModifyVariable(method = "travel", at = @At(value = "FIELD", target = "Lnet/minecraft/entity/LivingEntity;onGround:Z", ordinal = 2), ordinal = 0)
+    @ModifyVariable(method = "travel", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;isOnGround()Z", ordinal = 2), ordinal = 0)
     private float removeSlipperiness(float t) {
         if (!((Object) this instanceof PlayerEntity)) return t;
         if (!Victus.ASPECTS.get(this).hasAspect(IcyAspect.TYPE, HeartAspect.IS_ACTIVE)) return t;

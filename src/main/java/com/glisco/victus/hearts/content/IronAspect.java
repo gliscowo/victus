@@ -17,12 +17,12 @@ public class IronAspect extends HeartAspect {
 
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        var golem = EntityType.IRON_GOLEM.create(player.world);
+        var golem = EntityType.IRON_GOLEM.create(player.getWorld());
 
         Victus.ENTITY_FLAGS.get(golem).setFlag(NO_DROPS_FLAG);
         golem.updatePositionAndAngles(player.getX(), player.getY(), player.getZ(), 0, 0);
 
-        player.world.spawnEntity(golem);
+        player.getWorld().spawnEntity(golem);
         return false;
     }
 }

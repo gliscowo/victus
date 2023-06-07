@@ -25,12 +25,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageTracker;onDamage(Lnet/minecraft/entity/damage/DamageSource;FF)V", shift = At.Shift.AFTER), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void onTakeDamage(DamageSource source, float amount, CallbackInfo ci, float originalHealth) {
-        float health = originalHealth - amount;
+    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageTracker;onDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", shift = At.Shift.AFTER))
+    private void onTakeDamage(DamageSource source, float amount, CallbackInfo ci) {
+        float health = this.getHealth() - amount;
         int affectedAspect = Math.max(0, (int) Math.ceil((health + 1) / 2d) - 1);
 
-        Victus.ASPECTS.get(this).damageAspect(affectedAspect, source, amount, originalHealth);
+        Victus.ASPECTS.get(this).damageAspect(affectedAspect, source, amount, this.getHealth());
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
@@ -40,7 +40,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         if (this.getHealth() >= this.getMaxHealth() * .35f) return;
         if (!Victus.ASPECTS.get(this).hasAspect(IronAspect.TYPE, HeartAspect.IS_NOT_ACTIVE)) return;
 
-        var golems = this.world.getEntitiesByClass(IronGolemEntity.class, new Box(this.getBlockPos()).expand(10), Entity::isAlive);
+        var golems = this.getWorld().getEntitiesByClass(IronGolemEntity.class, new Box(this.getBlockPos()).expand(10), Entity::isAlive);
         golems.forEach(ironGolemEntity -> ironGolemEntity.setTarget(this));
     }
 

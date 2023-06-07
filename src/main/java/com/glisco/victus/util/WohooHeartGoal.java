@@ -35,11 +35,11 @@ public class WohooHeartGoal extends Goal {
         } else if (evoker.age < this.startTime) {
             return false;
         } else {
-            List<ItemEntity> list = evoker.world.getEntitiesByClass(ItemEntity.class, this.evoker.getBoundingBox().expand(16, 4, 16), entity -> entity.getStack().getCount() == 1 && entity.getStack().getItem() == VictusItems.BLANK_HEART_ASPECT);
+            List<ItemEntity> list = evoker.getWorld().getEntitiesByClass(ItemEntity.class, this.evoker.getBoundingBox().expand(16, 4, 16), entity -> entity.getStack().getCount() == 1 && entity.getStack().getItem() == VictusItems.BLANK_HEART_ASPECT);
             if (list.isEmpty()) {
                 return false;
             } else {
-                this.target = list.get(evoker.world.random.nextInt(list.size()));
+                this.target = list.get(evoker.getWorld().random.nextInt(list.size()));
                 return true;
             }
         }
@@ -70,7 +70,7 @@ public class WohooHeartGoal extends Goal {
         this.spellCooldown--;
         if (this.spellCooldown == 0) {
             target.setStack(new ItemStack(VictusItems.EVOKING_HEART_ASPECT));
-            VictusParticleEvents.CONVERT_ASPECT.spawn(target.world, target.getPos());
+            VictusParticleEvents.CONVERT_ASPECT.spawn(target.getWorld(), target.getPos());
 
             evoker.playSound(((SpellcastingIllagerEntityAccessor) evoker).victus_invokeGetCastSpellSound(), 1.0F, 1.0F);
         }

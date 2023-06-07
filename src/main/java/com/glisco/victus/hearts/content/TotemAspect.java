@@ -39,7 +39,7 @@ public class TotemAspect extends HeartAspect {
             this.hadTotem = false;
         }
 
-        player.world.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 1.0F);
+        player.getWorld().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_TOTEM_USE, player.getSoundCategory(), 1.0F, 1.0F);
 
         Victus.ASPECTS.sync(player);
         return true;

@@ -17,7 +17,7 @@ class BlankAspectItem extends Item {
     @Override
     public void onItemEntityDestroyed(ItemEntity entity) {
         if (!entity.isOnFire()) return;
-        entity.world.playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1, 1);
-        ItemScatterer.spawn(entity.world, entity.getX(), entity.getY(), entity.getZ(), new ItemStack(VictusItems.VOID_HEART_ASPECT));
+        entity.getWorld().playSound(null, entity.getBlockPos(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1, 1);
+        ItemScatterer.spawn(entity.getWorld(), entity.getX(), entity.getY(), entity.getZ(), new ItemStack(VictusItems.VOID_HEART_ASPECT));
     }
 }

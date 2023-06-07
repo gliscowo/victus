@@ -21,7 +21,7 @@ public class DraconicAspect extends HeartAspect {
     @SuppressWarnings("ConstantConditions")
     @Override
     public boolean handleBreak(DamageSource source, float damage, float originalHealth) {
-        var areaEffectCloud = new AreaEffectCloudEntity(this.player.world, this.player.getX(), this.player.getY(), this.player.getZ());
+        var areaEffectCloud = new AreaEffectCloudEntity(this.player.getWorld(), this.player.getX(), this.player.getY(), this.player.getZ());
 
         Victus.ENTITY_FLAGS.get(areaEffectCloud).setFlag(IGNORE_OWNER_FLAG);
 
@@ -33,7 +33,7 @@ public class DraconicAspect extends HeartAspect {
         areaEffectCloud.setRadiusGrowth((7f - areaEffectCloud.getRadius()) / areaEffectCloud.getDuration());
         areaEffectCloud.addEffect(new StatusEffectInstance(VictusStatusEffects.TRUE_DAMAGE, 1, 0));
 
-        player.world.spawnEntity(areaEffectCloud);
+        player.getWorld().spawnEntity(areaEffectCloud);
         return false;
     }
 }
