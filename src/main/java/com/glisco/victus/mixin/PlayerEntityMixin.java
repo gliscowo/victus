@@ -25,12 +25,12 @@ public abstract class PlayerEntityMixin extends LivingEntity {
         super(entityType, world);
     }
 
-    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/damage/DamageTracker;onDamage(Lnet/minecraft/entity/damage/DamageSource;F)V", shift = At.Shift.AFTER))
+    @Inject(method = "applyDamage", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;setHealth(F)V", shift = At.Shift.AFTER))
     private void onTakeDamage(DamageSource source, float amount, CallbackInfo ci) {
-        float health = this.getHealth() - amount;
+        float health = this.getHealth();
         int affectedAspect = Math.max(0, (int) Math.ceil((health + 1) / 2d) - 1);
 
-        Victus.ASPECTS.get(this).damageAspect(affectedAspect, source, amount, this.getHealth());
+        Victus.ASPECTS.get(this).damageAspect(affectedAspect, source, amount, this.getHealth() + amount);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))
