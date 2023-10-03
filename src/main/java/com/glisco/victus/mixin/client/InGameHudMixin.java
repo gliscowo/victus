@@ -55,22 +55,22 @@ public abstract class InGameHudMixin {
         this.aspectComponent = null;
     }
 
-    @Inject(method = "renderHealthBar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawHeart(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/gui/hud/InGameHud$HeartType;IIIZZ)V", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
-    private void storeLocals(DrawContext context, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo ci, InGameHud.HeartType type, int i, int j, int k, int l, int m, int n, int o, int p, int q) {
-        this.heartX = p;
-        this.heartY = q;
-        this.heartIndex = m;
+    @Inject(method = "renderHealthBar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawHeart(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/gui/hud/InGameHud$HeartType;IIZZZ)V", ordinal = 0), locals = LocalCapture.CAPTURE_FAILHARD)
+    private void storeLocals(DrawContext context, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo ci, InGameHud.HeartType heartType, boolean bl, int i, int j, int k, int l, int m, int n, int o, int p) {
+        this.heartX = o;
+        this.heartY = p;
+        this.heartIndex = l;
     }
 
-    @Inject(method = "drawHeart", at = @At("TAIL"), cancellable = true)
-    private void renderRechargingOutline(DrawContext context, InGameHud.HeartType type, int x, int y, int v, boolean blinking, boolean halfHeart, CallbackInfo ci) {
+    @Inject(method = "drawHeart", at = @At("TAIL"))
+    private void renderRechargingOutline(DrawContext context, InGameHud.HeartType type, int x, int y, boolean hardcore, boolean blinking, boolean half, CallbackInfo ci) {
         if (type != InGameHud.HeartType.CONTAINER) return;
         if (!aspectComponent.recharging() || aspectComponent.getAspect(heartIndex) == null) return;
 
         context.drawTexture(HeartAspect.HEART_ATLAS_TEXTURE, heartX, heartY, 55, 55, 9, 9, 64, 64);
     }
 
-    @Inject(method = "renderHealthBar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawHeart(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/gui/hud/InGameHud$HeartType;IIIZZ)V", ordinal = 3, shift = At.Shift.AFTER))
+    @Inject(method = "renderHealthBar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;drawHeart(Lnet/minecraft/client/gui/DrawContext;Lnet/minecraft/client/gui/hud/InGameHud$HeartType;IIZZZ)V", ordinal = 3, shift = At.Shift.AFTER))
     private void renderOverlay(DrawContext context, PlayerEntity player, int x, int y, int lines, int regeneratingHeartIndex, float maxHealth, int lastHealth, int health, int absorption, boolean blinking, CallbackInfo ci) {
         final var aspect = aspectComponent.getAspect(heartIndex);
         if (aspect == null) return;

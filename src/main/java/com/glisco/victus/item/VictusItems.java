@@ -2,7 +2,7 @@ package com.glisco.victus.item;
 
 import com.glisco.victus.Victus;
 import com.glisco.victus.hearts.content.*;
-import io.wispforest.lavender.book.BookItem;
+import io.wispforest.lavender.book.LavenderBookItem;
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import io.wispforest.owo.registration.annotations.IterationIgnored;
 import io.wispforest.owo.registration.reflect.ItemRegistryContainer;
@@ -39,7 +39,7 @@ public class VictusItems implements ItemRegistryContainer {
     public static final Item BLANK_HEART_ASPECT = new BlankAspectItem();
 
     @IterationIgnored
-    public static final Item VICTUS_JOURNAL = BookItem.registerForBook(Victus.id("journal"), Victus.id("victus_journal"), new OwoItemSettings().group(Victus.VICTUS_GROUP).maxCount(1));
+    public static final Item VICTUS_JOURNAL = LavenderBookItem.registerForBook(Victus.id("journal"), Victus.id("victus_journal"), new OwoItemSettings().group(Victus.VICTUS_GROUP).maxCount(1));
 
     public static MutableText coloredTranslationWithPrefix(String key, int color) {
         return Text.translatable("victus.aspect_item_prefix").append(Text.translatable(key).setStyle(Style.EMPTY.withColor(TextColor.fromRgb(color))));

@@ -14,7 +14,7 @@ loom {
 repositories {
     maven {
         name = 'Ladysnake Mods'
-        url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        url = 'https://maven.ladysnake.org/releases'
     }
 
     maven { url 'https://maven.wispforest.io' }
